@@ -20,20 +20,36 @@ body{
   color:var(--texto);
   text-align:center;
   min-height:100vh;
-  padding-bottom:140px;
+  padding-bottom:160px;
+}
+
+/* ===== TÍTULO ===== */
+
+.titulo-container{
+  margin-top:35px;
+  margin-bottom:15px;
 }
 
 h1{
   font-family:'Cinzel',serif;
   color:var(--ouro);
-  margin:25px 0 10px;
-  font-size:2.2em;
-  letter-spacing:3px;
-  text-shadow:0 0 10px rgba(212,175,55,0.6);
+  font-size:2.4em;
+  letter-spacing:4px;
+  text-shadow:0 0 12px rgba(212,175,55,0.7);
+  margin:0;
 }
 
+.linha-ornamental{
+  width:200px;
+  height:2px;
+  margin:12px auto 0;
+  background:linear-gradient(to right, transparent, var(--ouro), transparent);
+}
+
+/* ===== MENU ===== */
+
 .menu{
-  margin:15px 0;
+  margin:25px 0 10px;
 }
 
 button{
@@ -54,11 +70,13 @@ button:hover,button.ativo{
   color:var(--roxo);
 }
 
+/* ===== CARTAS ===== */
+
 #grid{
   display:grid;
   gap:18px;
   justify-content:center;
-  margin-top:25px;
+  margin-top:30px;
 }
 
 .carta{
@@ -87,22 +105,22 @@ button:hover,button.ativo{
   backface-visibility:hidden;
   border-radius:12px;
   border:2px solid var(--ouro);
-  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+  box-shadow:0 12px 28px rgba(0,0,0,0.6);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* Dorso místico */
+/* Dorso Místico */
 .frente{
   background:
     radial-gradient(circle at center,var(--ouro) 1%,transparent 2%),
-    radial-gradient(circle at center,rgba(255,255,255,0.1) 0%,transparent 60%),
+    radial-gradient(circle at center,rgba(255,255,255,0.08) 0%,transparent 60%),
     linear-gradient(135deg,#3a1c71,#120824);
-  background-size:10px 10px,100% 100%,100% 100%;
+  background-size:12px 12px,100% 100%,100% 100%;
   color:var(--ouro);
-  font-size:22px;
-  letter-spacing:2px;
+  font-size:24px;
+  letter-spacing:3px;
 }
 
 .verso{
@@ -117,12 +135,17 @@ button:hover,button.ativo{
   border-radius:10px;
 }
 
+/* ===== MENSAGEM ===== */
+
 #mensagem{
-  margin:30px auto;
-  max-width:600px;
+  margin:35px auto;
+  max-width:650px;
   font-size:15px;
-  line-height:1.6;
+  line-height:1.7;
+  padding:0 20px;
 }
+
+/* ===== CTA ===== */
 
 .cta-whatsapp{
   position:fixed;
@@ -141,12 +164,16 @@ button:hover,button.ativo{
 @media(max-width:450px){
   .carta{width:80px;height:130px;}
   #grid{gap:12px;}
+  h1{font-size:1.8em;}
 }
 </style>
 </head>
 <body>
 
-<h1>✦ Baralho Cigano ✦</h1>
+<div class="titulo-container">
+  <h1>✦ Baralho Cigano ✦</h1>
+  <div class="linha-ornamental"></div>
+</div>
 
 <div class="menu">
 <button onclick="iniciarTiragem(3,this)">3 Cartas</button>
@@ -162,21 +189,21 @@ button:hover,button.ativo{
 
 <script>
 const cartas = [
-{nome:"Cavaleiro",tipo:"neutro",tema:"movimento",desc:"Representa movimento, chegada de notícias e início rápido de acontecimentos.",img:"cartas/L01-Cavaleiro.jpg"},
-{nome:"Trevo",tipo:"positivo",tema:"sorte",desc:"Pequena sorte, oportunidades inesperadas e superação leve de obstáculos.",img:"cartas/L02-Trevo.jpg"},
-{nome:"Navio",tipo:"neutro",tema:"mudança",desc:"Expansão, viagens físicas ou emocionais, busca por novos horizontes.",img:"cartas/L03-Navio.jpg"},
-{nome:"Casa",tipo:"positivo",tema:"estrutura",desc:"Segurança, estabilidade familiar e estrutura sólida.",img:"cartas/L04-Casa.jpg"},
-{nome:"Árvore",tipo:"positivo",tema:"crescimento",desc:"Saúde, longevidade e desenvolvimento gradual.",img:"cartas/L05-Arvore.jpg"},
-{nome:"Nuvens",tipo:"negativo",tema:"confusão",desc:"Dúvidas, instabilidade mental e falta de clareza temporária.",img:"cartas/L06-Nuvens.jpg"},
-{nome:"Cobra",tipo:"negativo",tema:"alerta",desc:"Complexidade, inveja ou situações que exigem estratégia.",img:"cartas/L07-Cobra.jpg"},
-{nome:"Caixão",tipo:"negativo",tema:"transformação",desc:"Fim necessário, encerramento de ciclo e transformação profunda.",img:"cartas/L08-Caixao.jpg"},
-{nome:"Buquê",tipo:"positivo",tema:"felicidade",desc:"Alegria, reconhecimento e momentos agradáveis.",img:"cartas/L09-Buque.jpg"},
-{nome:"Foice",tipo:"negativo",tema:"corte",desc:"Corte súbito, decisões rápidas e rompimentos.",img:"cartas/L10-Foice.jpg"},
-{nome:"Sol",tipo:"positivo",tema:"sucesso",desc:"Sucesso, vitalidade, clareza e vitória garantida.",img:"cartas/L31-Sol.jpg"},
-{nome:"Lua",tipo:"positivo",tema:"emoção",desc:"Sensibilidade, reconhecimento emocional e intuição elevada.",img:"cartas/L32-Lua.jpg"},
-{nome:"Coração",tipo:"positivo",tema:"amor",desc:"Amor verdadeiro, sentimentos profundos e entrega emocional.",img:"cartas/L24-Coracao.jpg"},
-{nome:"Anel",tipo:"positivo",tema:"compromisso",desc:"Compromissos, acordos e vínculos duradouros.",img:"cartas/L25-Anel.jpg"},
-{nome:"Montanha",tipo:"negativo",tema:"bloqueio",desc:"Obstáculos difíceis e atrasos significativos.",img:"cartas/L21-Montanha.jpg"}
+{nome:"Cavaleiro",tipo:"neutro",desc:"movimento, chegada de notícias e início rápido de acontecimentos.",img:"cartas/L01-Cavaleiro.jpg"},
+{nome:"Trevo",tipo:"positivo",desc:"pequena sorte, oportunidades inesperadas e superação leve de obstáculos.",img:"cartas/L02-Trevo.jpg"},
+{nome:"Navio",tipo:"neutro",desc:"expansão e busca por novos horizontes.",img:"cartas/L03-Navio.jpg"},
+{nome:"Casa",tipo:"positivo",desc:"segurança e estabilidade emocional ou familiar.",img:"cartas/L04-Casa.jpg"},
+{nome:"Árvore",tipo:"positivo",desc:"crescimento gradual e fortalecimento.",img:"cartas/L05-Arvore.jpg"},
+{nome:"Nuvens",tipo:"negativo",desc:"confusão e instabilidade temporária.",img:"cartas/L06-Nuvens.jpg"},
+{nome:"Cobra",tipo:"negativo",desc:"situação complexa que exige estratégia.",img:"cartas/L07-Cobra.jpg"},
+{nome:"Caixão",tipo:"negativo",desc:"fim de ciclo e transformação profunda.",img:"cartas/L08-Caixao.jpg"},
+{nome:"Buquê",tipo:"positivo",desc:"alegria e reconhecimento.",img:"cartas/L09-Buque.jpg"},
+{nome:"Foice",tipo:"negativo",desc:"corte necessário e decisão abrupta.",img:"cartas/L10-Foice.jpg"},
+{nome:"Sol",tipo:"positivo",desc:"sucesso e clareza absoluta.",img:"cartas/L31-Sol.jpg"},
+{nome:"Lua",tipo:"positivo",desc:"sensibilidade e reconhecimento emocional.",img:"cartas/L32-Lua.jpg"},
+{nome:"Coração",tipo:"positivo",desc:"amor e sentimentos verdadeiros.",img:"cartas/L24-Coracao.jpg"},
+{nome:"Anel",tipo:"positivo",desc:"compromissos e vínculos importantes.",img:"cartas/L25-Anel.jpg"},
+{nome:"Montanha",tipo:"negativo",desc:"bloqueios e desafios a serem superados.",img:"cartas/L21-Montanha.jpg"}
 ];
 
 let tiragem=[],limite=0,reveladas=0;
@@ -227,25 +254,42 @@ if(reveladas===limite)mostrarSintese();
 }
 
 function mostrarSintese(){
-let positivas=0,negativas=0;
-tiragem.forEach(c=>{
-if(c.tipo==="positivo")positivas++;
-if(c.tipo==="negativo")negativas++;
-});
 
-let energia="equilibrada";
-if(positivas>negativas)energia="predominantemente favorável";
-if(negativas>positivas)energia="desafiadora";
+let texto = `<strong>🔮 Síntese Interpretativa</strong><br><br>`;
 
-let texto=`A energia geral da tiragem é ${energia}. `;
-texto+=tiragem.map(c=>`${c.nome} indica ${c.desc.toLowerCase()}`).join(" ");
-texto+=`<br><br>✨ Quer saber mais?<br>
-Jéssica Ramos Taróloga<br>
+if(limite === 3){
+
+let inicio = tiragem[0];
+let meio = tiragem[1];
+let fim = tiragem[2];
+
+texto += `A situação inicia com <strong>${inicio.nome}</strong>, indicando ${inicio.desc} `;
+texto += `Em seguida, <strong>${meio.nome}</strong> mostra que há ${meio.desc} `;
+texto += `O desfecho com <strong>${fim.nome}</strong> aponta para ${fim.desc} <br><br>`;
+
+texto += `A leitura sugere um movimento claro de transformação entre o início e o resultado. `;
+texto += `O momento pede consciência nas decisões e observação dos sinais ao redor.`;
+
+}
+
+if(limite === 9){
+
+let passado = tiragem[0];
+let centro = tiragem[4];
+let futuro = tiragem[8];
+
+texto += `O passado é marcado por <strong>${passado.nome}</strong>, representando ${passado.desc} `;
+texto += `No centro da tiragem está <strong>${centro.nome}</strong>, que revela o tema principal: ${centro.desc} `;
+texto += `A tendência futura aparece em <strong>${futuro.nome}</strong>, indicando ${futuro.desc} <br><br>`;
+
+texto += `O conjunto das cartas mostra que o momento atual gira em torno dessa energia central. `;
+texto += `As experiências passadas influenciam diretamente o desfecho, e suas atitudes agora serão decisivas.`;
+
+}
+
+texto += `<br><br>✨ <strong>Quer aprofundar essa leitura?</strong><br>
+Jessica Ramos ☆ Taróloga<br>
 Clique no link abaixo para falar diretamente comigo.`;
 
-document.getElementById("mensagem").innerHTML=texto;
+document.getElementById("mensagem").innerHTML = texto;
 }
-</script>
-
-</body>
-</html>
