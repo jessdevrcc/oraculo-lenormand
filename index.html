@@ -6,159 +6,177 @@
 <title>Oráculo Lenormand | Jessica Ramos</title>
 
 <style>
-:root{
-  --roxo:#140a25;
-  --roxo2:#1e1033;
-  --dourado:#d4af37;
-  --texto:#f3eaff;
-}
-
-body{
-  margin:0;
-  background:linear-gradient(180deg,var(--roxo),var(--roxo2));
-  color:var(--texto);
-  font-family:serif;
-  text-align:center;
-}
-
-h1{
-  margin:25px 0 10px 0;
-  font-weight:normal;
-  letter-spacing:2px;
-  color:var(--dourado);
-}
-
-.descricao{
-  max-width:600px;
-  margin:0 auto 20px auto;
-  padding:0 15px;
-  font-size:14px;
-  opacity:0.9;
-}
-
-button{
-  background:#241442;
-  color:var(--texto);
-  border:1px solid var(--dourado);
-  padding:10px 18px;
-  margin:6px;
-  border-radius:30px;
-  cursor:pointer;
-}
-
-button.ativo{
-  background:var(--dourado);
-  color:#140a25;
-}
-
-#grid{
-  margin-top:25px;
-  display:grid;
-  gap:12px;
-  justify-content:center;
-}
-
-.carta{
-  width:90px;
-  height:140px;
-  background:#1c0f30;
-  border:1px solid var(--dourado);
-  border-radius:8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  font-size:26px;
-  overflow:hidden;
-  transition:0.3s;
-}
-
-.carta img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:6px;
-}
-
-.revelada{
-  padding:0;
-  background:#000;
-}
-
-#mensagem{
-  margin:25px auto;
-  max-width:600px;
-  padding:0 15px;
-  font-style:italic;
-}
-
-.sintese{
-  margin-top:15px;
-  font-size:14px;
-  opacity:0.9;
-}
-
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#25d366;
-  color:white;
-  padding:14px 25px;
-  border-radius:40px;
-  text-decoration:none;
-  font-weight:bold;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-}
-
-@media(max-width:400px){
-  .carta{
-    width:80px;
-    height:125px;
+  :root {
+    --ouro: #d4af37;
+    --roxo: #1a0b2e;
+    --texto: #e9dcff;
   }
-}
+
+  body {
+    margin:0;
+    background: radial-gradient(circle at center, #3b1d6e 0%, #1a0b2e 100%);
+    color: var(--texto);
+    font-family: 'Raleway', sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+    padding-bottom:150px;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--ouro);
+    margin:20px 0 10px;
+    font-size:2em;
+    letter-spacing:2px;
+  }
+
+  .menu {
+    margin:15px 0;
+  }
+
+  button {
+    background: rgba(255,255,255,0.05);
+    color: var(--ouro);
+    border:1px solid var(--ouro);
+    padding:10px 20px;
+    margin:0 5px;
+    border-radius:25px;
+    cursor:pointer;
+    font-family:'Cinzel', serif;
+    text-transform:uppercase;
+    transition:all 0.3s;
+  }
+
+  button.ativo, button:hover {
+    background: var(--ouro);
+    color: var(--roxo);
+  }
+
+  #grid {
+    display:grid;
+    gap:15px;
+    justify-content:center;
+    margin-top:20px;
+  }
+
+  .carta {
+    width:90px;
+    height:140px;
+    background:#2b1845;
+    border:1px solid var(--ouro);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:26px;
+    transition: transform 0.5s;
+    position:relative;
+  }
+
+  .carta img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:10px;
+  }
+
+  .carta.revelada {
+    font-size:13px;
+    background:#261443;
+    padding:5px;
+  }
+
+  #mensagem {
+    margin-top:20px;
+    font-style:italic;
+    max-width:500px;
+  }
+
+  .cta-whatsapp {
+    position:fixed;
+    bottom:20px;
+    background:#25d366;
+    color:#fff;
+    padding:15px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+    font-family:'Raleway',sans-serif;
+  }
+
+  .cta-whatsapp:hover {
+    transform:scale(1.05);
+  }
+
+  @media(max-width:450px){
+    .carta{width:70px;height:110px;}
+    #grid{gap:10px;}
+  }
 </style>
 </head>
 <body>
 
 <h1>✦ Oráculo Lenormand ✦</h1>
 
-<div class="descricao">
-O Baralho Lenormand é um oráculo tradicional europeu composto por 36 cartas simbólicas.
-Ele revela situações práticas da vida, sentimentos, decisões e caminhos futuros
-com clareza e objetividade.
-<br><br>
-Para interpretações aprofundadas e consultas personalizadas,
-agende sua leitura com Jessica Ramos.
-</div>
-
-<div>
-  <button onclick="iniciar(3,this)">3 Cartas</button>
-  <button onclick="iniciar(9,this)">9 Cartas</button>
+<div class="menu">
+  <button onclick="iniciarTiragem(3,this)">3 Cartas</button>
+  <button onclick="iniciarTiragem(9,this)">9 Cartas</button>
 </div>
 
 <div id="grid"></div>
 <div id="mensagem">Escolha uma tiragem</div>
 
-<a class="whatsapp" 
-href="https://wa.me/5511954102956?text=Olá Jessica! Fiz uma tiragem no seu site e gostaria de uma consulta completa."
-target="_blank">
-Agendar Consulta no WhatsApp
-</a>
+<a href="https://wa.me/5511954102956?text=Olá Jessica! Gostaria de uma leitura completa." target="_blank" class="cta-whatsapp">💬 Consultar no WhatsApp</a>
 
 <script>
-
 const cartas = [
-"Cavaleiro","Trevo","Navio","Casa","Árvore","Nuvens","Cobra",
-"Caixão","Buquê","Foice","Chicote","Pássaros","Criança",
-"Raposa","Urso","Estrela","Cegonha","Cão","Torre","Jardim",
-"Montanha","Caminhos","Ratos","Coração","Anel","Livro",
-"Carta","Homem","Mulher","Lírios","Sol","Lua","Chave",
-"Peixes","Âncora","Cruz"
+  {nome:"Cavaleiro", desc:"Mensagens rápidas, movimento e notícias chegando.", img:"cartas/L01-Cavaleiro.jpg"},
+  {nome:"Trevo", desc:"Pequena sorte, obstáculos superados com otimismo.", img:"cartas/L02-Trevo.jpg"},
+  {nome:"Navio", desc:"Viagens, novos horizontes ou projetos distantes.", img:"cartas/L03-Navio.jpg"},
+  {nome:"Casa", desc:"Segurança, lar, família e estabilidade emocional.", img:"cartas/L04-Casa.jpg"},
+  {nome:"Árvore", desc:"Crescimento vital, saúde e raízes profundas.", img:"cartas/L05-Arvore.jpg"},
+  {nome:"Nuvens", desc:"Dúvidas temporárias, aguarde a poeira baixar.", img:"cartas/L06-Nuvens.jpg"},
+  {nome:"Cobra", desc:"Atenção a pessoas ao redor, use sua sabedoria.", img:"cartas/L07-Cobra.jpg"},
+  {nome:"Caixão", desc:"Transformação profunda e encerramento de ciclos.", img:"cartas/L08-Caixao.jpg"},
+  {nome:"Buquê", desc:"Felicidade, presentes do destino e harmonia.", img:"cartas/L09-Buque.jpg"},
+  {nome:"Foice", desc:"Corte necessário para o seu crescimento.", img:"cartas/L10-Foice.jpg"},
+  {nome:"Chicote", desc:"Poder de ação, cuidado com conflitos inúteis.", img:"cartas/L11-Chicote.jpg"},
+  {nome:"Pássaros", desc:"Comunicação alegre, parcerias e liberdade.", img:"cartas/L12-Passaros.jpg"},
+  {nome:"Criança", desc:"Novos começos, pureza e espontaneidade.", img:"cartas/L13-Crianca.jpg"},
+  {nome:"Raposa", desc:"Seja estrategista. Observe antes de agir.", img:"cartas/L14-Raposa.jpg"},
+  {nome:"Urso", desc:"Força bruta e proteção, evite ciúmes.", img:"cartas/L15-Urso.jpg"},
+  {nome:"Estrela", desc:"Inspiração divina e caminhos iluminados.", img:"cartas/L16-Estrela.jpg"},
+  {nome:"Cegonha", desc:"Mudanças positivas e novidades inesperadas.", img:"cartas/L17-Cegonha.jpg"},
+  {nome:"Cão", desc:"Lealdade e apoio de amigos verdadeiros.", img:"cartas/L18-Cao.jpg"},
+  {nome:"Torre", desc:"Elevação espiritual e autoconhecimento.", img:"cartas/L19-Torre.jpg"},
+  {nome:"Jardim", desc:"Expansão social e colheita do que plantou.", img:"cartas/L20-Jardim.jpg"},
+  {nome:"Montanha", desc:"Desafios que exigem firmeza e perseverança.", img:"cartas/L21-Montanha.jpg"},
+  {nome:"Caminhos", desc:"Decisões à vista. Escolha com o coração.", img:"cartas/L22-Caminhos.jpg"},
+  {nome:"Ratos", desc:"Atenção aos pequenos desgastes de energia.", img:"cartas/L23-Rato.jpg"},
+  {nome:"Coração", desc:"Amor, sentimentos profundos e entrega.", img:"cartas/L24-Coracao.jpg"},
+  {nome:"Anel", desc:"Compromisso, união e parcerias sólidas.", img:"cartas/L25-Anel.jpg"},
+  {nome:"Livro", desc:"Segredos sendo guardados ou estudos importantes.", img:"cartas/L26-Livro.jpg"},
+  {nome:"Carta", desc:"Documentos ou comunicações formais importantes.", img:"cartas/L27-Carta.jpg"},
+  {nome:"Homem", desc:"Figura masculina central ou energia de ação.", img:"cartas/L28-Homem.jpg"},
+  {nome:"Mulher", desc:"Figura feminina central ou energia receptiva.", img:"cartas/L29-Mulher.jpg"},
+  {nome:"Lírios", desc:"Paz, pureza e maturidade emocional.", img:"cartas/L30-Lirios.jpg"},
+  {nome:"Sol", desc:"Sucesso absoluto, energia e clareza mental.", img:"cartas/L31-Sol.jpg"},
+  {nome:"Lua", desc:"Intuição, sonhos e reconhecimento público.", img:"cartas/L32-Lua.jpg"},
+  {nome:"Chave", desc:"A solução está em suas mãos. Portas abrindo.", img:"cartas/L33-Chave.jpg"},
+  {nome:"Peixes", desc:"Prosperidade, fluxo financeiro e abundância.", img:"cartas/L34-Peixes.jpg"},
+  {nome:"Âncora", desc:"Estabilidade alcançada e segurança no trabalho.", img:"cartas/L35-Ancora.jpg"},
+  {nome:"Cruz", desc:"Vitória após a provação. Fé inabalável.", img:"cartas/L36-Cruz.jpg"}
 ];
 
-let sorteio = [];
+let tiragem = [];
 let limite = 0;
 let reveladas = 0;
 
@@ -171,74 +189,45 @@ function embaralhar(lista){
   return copia;
 }
 
-function iniciar(qtd, botao){
-
+function iniciarTiragem(qtd, botao){
   limite = qtd;
   reveladas = 0;
-
-  sorteio = embaralhar(cartas).slice(0, limite);
-
-  document.querySelectorAll("button")
-    .forEach(b => b.classList.remove("ativo"));
+  tiragem = embaralhar(cartas).slice(0, limite);
+  document.querySelectorAll("button").forEach(b => b.classList.remove("ativo"));
   botao.classList.add("ativo");
-
-  document.getElementById("mensagem").innerText =
-    "Toque nas cartas para revelar";
-
+  document.getElementById("mensagem").innerText = "Toque nas cartas";
   montarGrid();
 }
 
 function montarGrid(){
-
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
-
-  grid.style.gridTemplateColumns = "repeat(3, 90px)";
-
-  for(let i=0;i<limite;i++){
+  grid.style.gridTemplateColumns = limite <= 3 ? "repeat(3, 90px)" : "repeat(3, 90px)";
+  tiragem.forEach((carta, i) => {
     const div = document.createElement("div");
     div.className = "carta";
     div.innerText = "✶";
-
-    div.onclick = function(){
-      revelar(div, i);
-    };
-
+    div.onclick = () => revelar(div, i);
     grid.appendChild(div);
-  }
+  });
 }
 
-function revelar(elemento, index){
-
-  if(elemento.classList.contains("revelada")) return;
-
-  elemento.innerHTML =
-    `<img src="cartas/L${String(index+1).padStart(2,'0')}-${sorteio[index]}.jpg">`;
-
-  elemento.classList.add("revelada");
-
+function revelar(div, index){
+  if(div.classList.contains("revelada")) return;
+  const carta = tiragem[index];
+  div.innerHTML = `<img src="${carta.img}" alt="${carta.nome}">`;
+  div.classList.add("revelada");
   reveladas++;
-
   if(reveladas === limite){
-    gerarSintese();
+    mostrarSintese();
   }
 }
 
-function gerarSintese(){
-  let texto = "✨ Tiragem concluída ✨\n\nCartas reveladas: ";
-  texto += sorteio.join(", ");
-
-  if(limite === 3){
-    texto += "\n\nSíntese: Momento pontual pedindo clareza e decisão consciente.";
-  }
-
-  if(limite === 9){
-    texto += "\n\nSíntese: Situação em desenvolvimento. Observe padrões e repetições entre as cartas.";
-  }
-
-  document.getElementById("mensagem").innerText = texto;
+function mostrarSintese(){
+  let texto = tiragem.map(c => `• ${c.nome}: ${c.desc}`).join("<br>");
+  texto += "<br><br>Para mais informações, consultas com Jéssica Ramos.";
+  document.getElementById("mensagem").innerHTML = texto;
 }
-
 </script>
 
 </body>
