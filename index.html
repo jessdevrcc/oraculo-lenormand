@@ -1,185 +1,327 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oráculo Lenormand</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mística Lenormand | Jéssica Ramos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ouro: #d4af37;
+            --roxo-profundo: #1a0b2e;
+            --roxo-luz: #3b1d6e;
+            --texto: #e9dcff;
+        }
 
-<style>
-body{
-  margin:0;
-  background:#120a1f;
-  color:#e9dcff;
-  font-family:serif;
-  text-align:center;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, var(--roxo-luz) 0%, var(--roxo-profundo) 100%);
+            color: var(--texto);
+            font-family: 'Raleway', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
 
-h1{
-  margin:20px 0;
-  font-weight:normal;
-  letter-spacing:2px;
-}
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-button{
-  background:#2b1845;
-  color:#e9dcff;
-  border:1px solid #a678ff;
-  padding:10px 15px;
-  margin:5px;
-  border-radius:6px;
-  cursor:pointer;
-  transition: all 0.3s;
-}
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--ouro);
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            font-size: 2.5em;
+        }
 
-button.ativo{
-  background:#a678ff;
-  color:#120a1f;
-}
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
 
-#grid{
-  margin-top:25px;
-  display:grid;
-  gap:15px;
-  justify-content:center;
-  /* Garante responsividade básica no grid */
-  grid-template-columns: repeat(auto-fit, 90px);
-  padding: 10px;
-}
+        /* Menu */
+        .menu {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
 
-.carta{
-  width:85px;
-  height:120px;
-  background:#1b0f2e;
-  border:1px solid #a678ff;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  font-size:26px;
-  transition: transform 0.2s;
-  user-select: none;
-}
+        button {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--ouro);
+            border: 1px solid var(--ouro);
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
 
-.carta:hover {
-  transform: scale(1.05);
-}
+        button:hover, button.ativo {
+            background: var(--ouro);
+            color: var(--roxo-profundo);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
 
-.revelada{
-  font-size:13px;
-  padding:5px;
-  background:#261443;
-  cursor: default;
-}
+        /* Grid e Cartas */
+        #grid {
+            display: grid;
+            gap: 20px;
+            perspective: 1000px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
 
-.revelada:hover {
-  transform: none;
-}
+        .carta-container {
+            width: 100px;
+            height: 165px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-#mensagem{
-  margin:20px 0;
-  font-style:italic;
-  min-height: 1.2em;
-}
-</style>
+        .carta-container.revelada {
+            transform: rotateY(180deg);
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            border: 2px solid var(--ouro);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .verso {
+            background: #2b1845;
+            background-image: url('https://www.transparenttextures.com/patterns/padded-light.png');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--ouro);
+        }
+
+        .frente {
+            background: #000;
+            transform: rotateY(180deg);
+            overflow: hidden;
+        }
+
+        .frente img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Área de Leitura */
+        #leitura-box {
+            max-width: 600px;
+            width: 90%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 2px solid var(--ouro);
+            margin-bottom: 120px;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .msg-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 10px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Footer / Contato */
+        .footer-info {
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 100px;
+            opacity: 0.7;
+        }
+
+        .cta-fixo {
+            position: fixed;
+            bottom: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            transition: transform 0.3s;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .cta-fixo:hover { transform: scale(1.08); }
+
+        /* Animação de Embaralhar */
+        .shuffle {
+            animation: shuffleAnim 0.7s ease-in-out;
+        }
+
+        @keyframes shuffleAnim {
+            0% { transform: translate(0,0); }
+            25% { transform: translate(50px, 10px); }
+            50% { transform: translate(-50px, -10px); }
+            100% { transform: translate(0,0); }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 400px) {
+            #grid { gap: 10px; }
+            .carta-container { width: 85px; height: 140px; }
+        }
+    </style>
 </head>
 <body>
 
-<h1>✦ Oráculo Lenormand ✦</h1>
+    <header>
+        <h1>✦ Mística Lenormand ✦</h1>
+        <p class="subtitle">Oráculo por Jéssica Ramos</p>
+    </header>
 
-<div>
-  <button onclick="iniciar(3,this)">3 Cartas</button>
-  <button onclick="iniciar(9,this)">9 Cartas</button>
-</div>
+    <div class="menu">
+        <button onclick="prepararTiragem(3, this)">3 Cartas</button>
+        <button onclick="prepararTiragem(9, this)">9 Cartas</button>
+    </div>
 
-<div id="grid"></div>
-<div id="mensagem">Escolha uma tiragem</div>
+    <div id="grid"></div>
+
+    <div id="leitura-box">
+        <h3 style="color:var(--ouro); font-family:'Cinzel'; margin-top:0;">Sua Revelação:</h3>
+        <div id="texto-leitura"></div>
+    </div>
+
+    <div class="footer-info">
+        Consultas Particulares com Jéssica Ramos
+    </div>
+
+    <a href="https://wa.me/5511954102956?text=Olá Jéssica! Fiz uma tiragem no seu site e senti que preciso de uma leitura completa." target="_blank" class="cta-fixo">
+        <span style="font-size:20px">💬</span> AGENDAR CONSULTA COMPLETA
+    </a>
 
 <script>
-
-const cartas = [
-"Cavaleiro","Trevo","Navio","Casa","Árvore","Nuvens","Cobra",
-"Caixão","Buquê","Foice","Chicote","Pássaros","Criança",
-"Raposa","Urso","Estrela","Cegonha","Cão","Torre","Jardim",
-"Montanha","Caminhos","Ratos","Coração","Anel","Livro",
-"Carta","Homem","Mulher","Lírios","Sol","Lua","Chave",
-"Peixes","Âncora","Cruz"
-];
-
-let sorteio = [];
-let limite = 0;
-let reveladas = 0;
-
-function embaralhar(lista){
-  let copia = [...lista];
-  for(let i = copia.length - 1; i > 0; i--){
-    let j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-  return copia;
-}
-
-function iniciar(qtd, botao){
-
-  limite = qtd;
-  reveladas = 0;
-
-  sorteio = embaralhar(cartas).slice(0, limite);
-
-  // Correção aplicada aqui: Verifica se 'botao' foi passado
-  if(botao) {
-    document.querySelectorAll("button")
-      .forEach(b => b.classList.remove("ativo"));
-    botao.classList.add("ativo");
-  }
-
-  document.getElementById("mensagem").innerText =
-    "Toque nas cartas";
-
-  montarGrid();
-}
-
-function montarGrid(){
-
-  const grid = document.getElementById("grid");
-  grid.innerHTML = "";
-
-  // Ajuste do grid baseado na quantidade
-  if(limite === 3){
-    grid.style.gridTemplateColumns = "repeat(3, 90px)";
-  } else if(limite === 9){
-    grid.style.gridTemplateColumns = "repeat(3, 90px)";
-  }
-
-  for(let i=0;i<limite;i++){
-    const div = document.createElement("div");
-    div.className = "carta";
-    div.innerText = "✶";
-
-    div.onclick = function(){
-      revelar(div, i);
+    const dadosCartas = {
+        "Cavaleiro": { msg: "Mensagens rápidas, movimento e notícias chegando.", img: "L01-Cavaleiro.jpg" },
+        "Trevo": { msg: "Pequena sorte, obstáculos superados com otimismo.", img: "L02-Trevo.jpg" },
+        "Navio": { msg: "Viagens, novos horizontes ou projetos distantes.", img: "L03-Navio.jpg" },
+        "Casa": { msg: "Segurança, lar, família e estabilidade emocional.", img: "L04-Casa.jpg" },
+        "Arvore": { msg: "Crescimento vital, saúde e raízes profundas.", img: "L05-Arvore.jpg" },
+        "Nuvens": { msg: "Dúvidas temporárias. Aguarde a poeira baixar.", img: "L06-Nuvens.jpg" },
+        "Cobra": { msg: "Atenção a pessoas ao redor. Use sua sabedoria.", img: "L07-Cobra.jpg" },
+        "Caixão": { msg: "Transformação profunda e encerramento de ciclos.", img: "L08-Caixao.jpg" },
+        "Buque": { msg: "Felicidade, presentes do destino e harmonia.", img: "L09-Buque.jpg" },
+        "Foice": { msg: "Corte necessário para o seu crescimento.", img: "L10-Foice.jpg" },
+        "Chicote": { msg: "Poder de ação, mas cuidado com conflitos inúteis.", img: "L11-Chicote.jpg" },
+        "Passaros": { msg: "Comunicação alegre, parcerias e liberdade.", img: "L12-Passaros.jpg" },
+        "Crianca": { msg: "Novos começos, pureza e espontaneidade.", img: "L13-Crianca.jpg" },
+        "Raposa": { msg: "Seja estrategista. Observe antes de agir.", img: "L14-Raposa.jpg" },
+        "Urso": { msg: "Força bruta e proteção, mas evite o ciúme.", img: "15-Urso.jpg" },
+        "Estrela": { msg: "Inspiração divina e caminhos iluminados.", img: "L16-Estrela.jpg" },
+        "Cegonha": { msg: "Mudanças positivas e novidades inesperadas.", img: "L17-Cegonha.jpg" },
+        "Cao": { msg: "Lealdade e apoio de amigos verdadeiros.", img: "L18-Cao.jpg" },
+        "Torre": { msg: "Elevação espiritual e autoconhecimento.", img: "L19-Torre.jpg" },
+        "Jardim": { msg: "Expansão social e colheita do que plantou.", img: "L20-Jardim.jpg" },
+        "Montanha": { msg: "Desafios que exigem firmeza e perseverança.", img: "L21-Montanha.jpg" },
+        "Caminhos": { msg: "Decisões à vista. Escolha com o coração.", img: "L22-Caminhos.jpg" },
+        "Rato": { msg: "Atenção aos pequenos desgastes de energia.", img: "L23-Rato.jpg" },
+        "Coracao": { msg: "Amor, sentimentos profundos e entrega.", img: "L24-Coracao.jpg" },
+        "Anel": { msg: "Compromisso, união e parcerias sólidas.", img: "L25-Anel.jpg" },
+        "Livro": { msg: "Segredos sendo guardados ou estudos importantes.", img: "L26-Livro.jpg" },
+        "Carta": { msg: "Documentos ou comunicações formais importantes.", img: "L27-Carta.jpg" },
+        "Homem": { msg: "Figura masculina central ou energia de ação.", img: "L28-Homem.jpg" },
+        "Mulher": { msg: "Figura feminina central ou energia receptiva.", img: "L29-Mulher.jpg" },
+        "Lirios": { msg: "Paz, pureza e maturidade emocional.", img: "L30-Lirios.jpg" },
+        "Sol": { msg: "Sucesso absoluto, energia e clareza mental.", img: "L31-Sol.jpg" },
+        "Lua": { msg: "Intuição, sonhos e reconhecimento público.", img: "L32-Lua.jpg" },
+        "Chave": { msg: "A solução está em suas mãos. Portas abrindo.", img: "L33-Chave.jpg" },
+        "Peixes": { msg: "Prosperidade, fluxo financeiro e abundância.", img: "L34-Peixes.jpg" },
+        "Ancora": { msg: "Estabilidade alcançada e segurança no trabalho.", img: "L35-Ancora.jpg" },
+        "Cruz": { msg: "Vitória após a provação. Fé inabalável.", img: "L36-Cruz.jpg" }
     };
 
-    grid.appendChild(div);
-  }
-}
+    const nomesCartas = Object.keys(dadosCartas);
 
-function revelar(elemento, index){
+    function prepararTiragem(qtd, botao) {
+        document.querySelectorAll('button').forEach(b => b.classList.remove('ativo'));
+        botao.classList.add('ativo');
+        
+        const grid = document.getElementById('grid');
+        grid.innerHTML = "";
+        document.getElementById('leitura-box').style.display = 'none';
+        document.getElementById('texto-leitura').innerHTML = "";
 
-  if(elemento.classList.contains("revelada")) return;
+        // Criar cartas viradas
+        for(let i=0; i<qtd; i++) {
+            const el = document.createElement('div');
+            el.className = 'carta-container shuffle';
+            el.innerHTML = '<div class="face verso">✧</div>';
+            grid.appendChild(el);
+        }
 
-  elemento.innerText = sorteio[index];
-  elemento.classList.add("revelada");
+        // Simular embaralhamento antes de permitir ver
+        setTimeout(() => {
+            renderizarCartas(qtd);
+        }, 800);
+    }
 
-  reveladas++;
+    function renderizarCartas(qtd) {
+        const grid = document.getElementById('grid');
+        grid.innerHTML = "";
+        grid.style.gridTemplateColumns = `repeat(3, 100px)`;
 
-  if(reveladas === limite){
-    document.getElementById("mensagem").innerText =
-      "✨ Tiragem concluída ✨";
-  }
-}
+        const embaralhadas = [...nomesCartas].sort(() => Math.random() - 0.5).slice(0, qtd);
 
+        embaralhadas.forEach((nome) => {
+            const container = document.createElement('div');
+            container.className = 'carta-container';
+            container.innerHTML = `
+                <div class="face verso">✧</div>
+                <div class="frente">
+                    <img src="cartas/${dadosCartas[nome].img}" alt="${nome}">
+                </div>
+            `;
+            container.onclick = () => revelar(container, nome);
+            grid.appendChild(container);
+        });
+    }
+
+    function revelar(el, nome) {
+        if(el.classList.contains('revelada')) return;
+        el.classList.add('revelada');
+        
+        const box = document.getElementById('leitura-box');
+        box.style.display = 'block';
+        
+        const item = document.createElement('div');
+        item.className = 'msg-item';
+        item.innerHTML = `<strong>${nome}:</strong> ${dadosCartas[nome].msg}`;
+        document.getElementById('texto-leitura').appendChild(item);
+    }
 </script>
-
 </body>
 </html>
