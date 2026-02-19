@@ -24,7 +24,6 @@ body{
   padding-bottom:160px;
 }
 
-/* TÍTULO AJUSTADO */
 .titulo-container{
   margin-top:25px;
   margin-bottom:10px;
@@ -35,7 +34,7 @@ h1{
   color:var(--ouro);
   font-size:1.8em;
   letter-spacing:3px;
-  text-shadow:0 0-10px rgba(212,175,55,0.5);
+  text-shadow:0 0 10px rgba(212,175,55,0.5);
   margin:0;
 }
 
@@ -46,7 +45,6 @@ h1{
   background:linear-gradient(to right, transparent, var(--ouro), transparent);
 }
 
-/* MENU */
 .menu{
   margin:20px 0 10px;
 }
@@ -70,15 +68,13 @@ button:hover,button.ativo{
   color:var(--roxo);
 }
 
-/* GRID */
 #grid{
   display:grid;
   gap:15px;
   justify-content:center;
-  margin-top:20px;
+  margin:20px auto;
 }
 
-/* CARTAS */
 .carta{
   width:90px;
   height:145px;
@@ -129,7 +125,6 @@ button:hover,button.ativo{
   object-fit:cover;
 }
 
-/* MENSAGEM */
 #mensagem{
   margin:30px auto;
   max-width:600px;
@@ -138,10 +133,9 @@ button:hover,button.ativo{
   padding:20px;
   background: rgba(255,255,255,0.05);
   border-radius:15px;
-  text-align: left; /* Melhor para leitura de síntese */
+  text-align: left;
 }
 
-/* CTA */
 .cta-whatsapp{
   position:fixed;
   bottom:20px;
@@ -186,21 +180,42 @@ button:hover,button.ativo{
 
 <script>
 const cartas = [
-{nome:"Cavaleiro",tipo:"neutro",desc:"chegada de notícias e rapidez nos acontecimentos",conselho:"Aja com determinação e não deixe a oportunidade passar.",img:"cartas/L01-Cavaleiro.jpg"},
-{nome:"Trevo",tipo:"positivo",desc:"pequena sorte e superação de tropeços",conselho:"Mantenha o otimismo, pois o problema atual é passageiro.",img:"cartas/L02-Trevo.jpg"},
-{nome:"Navio",tipo:"neutro",desc:"mudanças graduais e novos horizontes se abrindo",conselho:"Deixe as coisas fluírem e aceite o novo ciclo que chega.",img:"cartas/L03-Navio.jpg"},
-{nome:"Casa",tipo:"positivo",desc:"equilíbrio familiar e segurança interna",conselho:"Busque apoio em suas bases e foque no seu bem-estar.",img:"cartas/L04-Casa.jpg"},
-{nome:"Árvore",tipo:"positivo",desc:"vitalidade e colheita de bons frutos a longo prazo",conselho:"Tenha paciência, pois o crescimento agora é sólido.",img:"cartas/L05-Arvore.jpg"},
-{nome:"Nuvens",tipo:"negativo",desc:"confusão mental e incertezas no caminho",conselho:"Aguarde a poeira baixar antes de tomar qualquer decisão.",img:"cartas/L06-Nuvens.jpg"},
-{nome:"Cobra",tipo:"negativo",desc:"necessidade de cautela e observação de traições",conselho:"Seja estrategista e não revele seus planos a qualquer um.",img:"cartas/L07-Cobra.jpg"},
-{nome:"Caixão",tipo:"negativo",desc:"finalização necessária para um renascimento",conselho:"Desapegue do que não te serve mais para poder evoluir.",img:"cartas/L08-Caixao.jpg"},
-{nome:"Buquê",tipo:"positivo",desc:"momentos de alegria e reconhecimento merecido",conselho:"Celebre suas conquistas e aceite os presentes da vida.",img:"cartas/L09-Buque.jpg"},
-{nome:"Foice",tipo:"negativo",desc:"corte abrupto e decisões que não podem ser adiadas",conselho:"Abandone o que te atrasa, mesmo que o corte seja doloroso.",img:"cartas/L10-Foice.jpg"},
-{nome:"Sol",tipo:"positivo",desc:"sucesso absoluto e clareza total sobre os fatos",conselho:"Aproveite sua energia vital, o momento é de brilhar.",img:"cartas/L31-Sol.jpg"},
-{nome:"Lua",tipo:"positivo",desc:"intuição aflorada e reconhecimento pelos seus méritos",conselho:"Confie nos seus pressentimentos e honre sua sensibilidade.",img:"cartas/L32-Lua.jpg"},
-{nome:"Coração",tipo:"positivo",desc:"sentimentos intensos e entrega emocional verdadeira",conselho:"Siga o que seu coração diz, mas mantenha os pés no chão.",img:"cartas/L24-Coracao.jpg"},
-{nome:"Anel",tipo:"positivo",desc:"uniões sólidas, contratos ou parcerias importantes",conselho:"Valorize seus compromissos e as pessoas leais ao seu lado.",img:"cartas/L25-Anel.jpg"},
-{nome:"Montanha",tipo:"negativo",desc:"obstáculos que exigem perseverança e justiça",conselho:"Não tente atravessar a montanha à força; contorne-a com calma.",img:"cartas/L21-Montanha.jpg"}
+    {nome:"Cavaleiro", tipo:"positivo", desc:"notícias rápidas e movimento", conselho:"Aja agora, a oportunidade está passando.", img:"cartas/L01-Cavaleiro.jpg"},
+    {nome:"Trevo", tipo:"positivo", desc:"pequena sorte e superação", conselho:"Os problemas são menores do que parecem.", img:"cartas/L02-Trevo.jpg"},
+    {nome:"Navio", tipo:"neutro", desc:"mudanças e viagens", conselho:"Aventure-se em novos horizontes.", img:"cartas/L03-Navio.jpg"},
+    {nome:"Casa", tipo:"positivo", desc:"estabilidade e família", conselho:"Foque no seu equilíbrio e nas suas bases.", img:"cartas/L04-Casa.jpg"},
+    {nome:"Árvore", tipo:"positivo", desc:"saúde e crescimento sólido", conselho:"Tenha paciência, tudo florescerá no tempo certo.", img:"cartas/L05-Arvore.jpg"},
+    {nome:"Nuvens", tipo:"negativo", desc:"dúvidas e instabilidade", conselho:"Não decida nada enquanto a confusão durar.", img:"cartas/L06-Nuvens.jpg"},
+    {nome:"Cobra", tipo:"negativo", desc:"estratégia e atenção", conselho:"Seja astuto(a) e observe quem te rodeia.", img:"cartas/L07-Cobra.jpg"},
+    {nome:"Caixão", tipo:"negativo", desc:"finais e transformações", conselho:"Aceite o fim de um ciclo para o novo chegar.", img:"cartas/L08-Caixao.jpg"},
+    {nome:"Buquê", tipo:"positivo", desc:"alegria e surpresas", conselho:"Aproveite o reconhecimento e os mimos da vida.", img:"cartas/L09-Buque.jpg"},
+    {nome:"Foice", tipo:"negativo", desc:"cortes e decisões abruptas", conselho:"Corte o que não te serve mais de uma vez.", img:"cartas/L10-Foice.jpg"},
+    {nome:"Chicote", tipo:"negativo", desc:"conflitos e estresse", conselho:"Cuidado com agressividade e palavras duras.", img:"cartas/L11-Chicote.jpg"},
+    {nome:"Pássaros", tipo:"positivo", desc:"comunicação e parcerias", conselho:"Dialogue e compartilhe seus pensamentos.", img:"cartas/L12-Passaros.jpg"},
+    {nome:"Criança", tipo:"positivo", desc:"novos começos e pureza", conselho:"Olhe para a vida com mais leveza e curiosidade.", img:"cartas/L13-Crianca.jpg"},
+    {nome:"Raposa", tipo:"negativo", desc:"cautela e armadilhas", conselho:"Fique alerta, nem tudo é o que parece.", img:"cartas/L14-Raposa.jpg"},
+    {nome:"Urso", tipo:"negativo", desc:"proteção ou ciúmes", conselho:"Proteja sua energia de pessoas dominadoras.", img:"cartas/L15-Urso.jpg"},
+    {nome:"Estrelas", tipo:"positivo", desc:"esperança e brilho", conselho:"Confie no seu destino e na proteção espiritual.", img:"cartas/L16-Estrelas.jpg"},
+    {nome:"Cegonha", tipo:"positivo", desc:"novidades e mudanças", conselho:"Esteja aberto(a) para renovações positivas.", img:"cartas/L17-Cegonha.jpg"},
+    {nome:"Cachorro", tipo:"positivo", desc:"fidelidade e amizade", conselho:"Conte com o apoio de quem é leal a você.", img:"cartas/L18-Cachorro.jpg"},
+    {nome:"Torre", tipo:"neutro", desc:"isolamento e espiritualidade", conselho:"Busque respostas dentro de você em silêncio.", img:"cartas/L19-Torre.jpg"},
+    {nome:"Jardim", tipo:"positivo", desc:"vida social e encontros", conselho:"Saia do casulo e mostre seus talentos.", img:"cartas/L20-Jardim.jpg"},
+    {nome:"Montanha", tipo:"negativo", desc:"bloqueios e justiça", conselho:"Tenha perseverança perante os obstáculos.", img:"cartas/L21-Montanha.jpg"},
+    {nome:"Caminhos", tipo:"neutro", desc:"escolhas e livre-arbítrio", conselho:"A decisão está em suas mãos. Escolha com calma.", img:"cartas/L22-Caminhos.jpg"},
+    {nome:"Ratos", tipo:"negativo", desc:"perdas e desgaste", conselho:"Identifique o que drena sua energia e afaste-se.", img:"cartas/L23-Ratos.jpg"},
+    {nome:"Coração", tipo:"positivo", desc:"amor e sentimentos", conselho:"Siga sua paixão, mas não esqueça a razão.", img:"cartas/L24-Coracao.jpg"},
+    {nome:"Anel", tipo:"positivo", desc:"compromissos e parcerias", conselho:"Honre seus acordos e fortaleça uniões.", img:"cartas/L25-Anel.jpg"},
+    {nome:"Livro", tipo:"neutro", desc:"segredos e estudos", conselho:"Mantenha o sigilo e busque mais conhecimento.", img:"cartas/L26-Livro.jpg"},
+    {nome:"Carta", tipo:"neutro", desc:"mensagens e papéis", conselho:"Fique atento(a) a notícias que chegarão por escrito.", img:"cartas/L27-Carta.jpg"},
+    {nome:"Cigano", tipo:"neutro", desc:"figura masculina ou razão", conselho:"Use a lógica e o foco para resolver problemas.", img:"cartas/L28-Cigano.jpg"},
+    {nome:"Cigana", tipo:"neutro", desc:"figura feminina ou intuição", conselho:"Siga sua sensibilidade e sua percepção interna.", img:"cartas/L29-Cigana.jpg"},
+    {nome:"Lírios", tipo:"positivo", desc:"paz e maturidade", conselho:"Aja com integridade e mantenha a calma.", img:"cartas/L30-Lirios.jpg"},
+    {nome:"Sol", tipo:"positivo", desc:"sucesso e clareza", conselho:"Brilhe! O momento de vitória é agora.", img:"cartas/L31-Sol.jpg"},
+    {nome:"Lua", tipo:"positivo", desc:"honraria e mistério", conselho:"Sua dedicação será reconhecida em breve.", img:"cartas/L32-Lua.jpg"},
+    {nome:"Chave", tipo:"positivo", desc:"soluções e aberturas", conselho:"Você tem o poder de abrir qualquer porta agora.", img:"cartas/L33-Chave.jpg"},
+    {nome:"Peixes", tipo:"positivo", desc:"prosperidade e lucros", conselho:"Movimente seus recursos, o fluxo financeiro cresce.", img:"cartas/L34-Peixes.jpg"},
+    {nome:"Âncora", tipo:"positivo", desc:"segurança e metas", conselho:"Mantenha a fé e a estabilidade em seus planos.", img:"cartas/L35-Ancora.jpg"},
+    {nome:"Cruz", tipo:"negativo", desc:"provas e destino", conselho:"Aguente firme, o sacrifício trará recompensas.", img:"cartas/L36-Cruz.jpg"}
 ];
 
 let tiragem=[],limite=0,reveladas=0;
