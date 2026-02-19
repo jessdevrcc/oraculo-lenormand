@@ -1,353 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baralho Cigano | Jessica Ramos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baralho Cigano | Jessica Ramos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --ouro: #d4af37;
-            --roxo: #120824;
-            --roxo2: #1e0f3a;
-            --texto: #f3e9ff;
-            --sucesso: #2ecc71;
-            --alerta: #e67e22;
-        }
+<style>
+:root{
+  --ouro:#d4af37;
+  --roxo:#120824;
+  --roxo2:#1e0f3a;
+  --texto:#f3e9ff;
+}
 
-        body {
-            margin: 0;
-            font-family: 'Raleway', sans-serif;
-            background: radial-gradient(circle at top, #2b1452 0%, #120824 70%);
-            color: var(--texto);
-            text-align: center;
-            min-height: 100vh;
-            padding-bottom: 120px;
-        }
+body{
+  margin:0;
+  font-family:'Raleway',sans-serif;
+  background:radial-gradient(circle at top,#2b1452 0%,#120824 70%);
+  color:var(--texto);
+  text-align:center;
+  min-height:100vh;
+  padding-bottom:160px;
+}
 
-        /* TÍTULO */
-        .titulo-container {
-            padding: 40px 20px 20px;
-        }
+/* TÍTULO AJUSTADO */
+.titulo-container{
+  margin-top:25px;
+  margin-bottom:10px;
+}
 
-        h1 {
-            font-family: 'Cinzel', serif;
-            color: var(--ouro);
-            font-size: 2.3em;
-            letter-spacing: 4px;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            margin: 0;
-        }
+h1{
+  font-family:'Cinzel',serif;
+  color:var(--ouro);
+  font-size:1.8em; /* Reduzido */
+  letter-spacing:3px;
+  text-shadow:0 0 10px rgba(212,175,55,0.5);
+  margin:0;
+}
 
-        .linha-ornamental {
-            width: 250px;
-            height: 2px;
-            margin: 15px auto 0;
-            background: linear-gradient(to right, transparent, var(--ouro), transparent);
-        }
+.linha-ornamental{
+  width:150px;
+  height:1px;
+  margin:10px auto 0;
+  background:linear-gradient(to right, transparent, var(--ouro), transparent);
+}
 
-        /* MENU */
-        .menu {
-            margin: 30px 0;
-        }
+/* MENU */
+.menu{
+  margin:20px 0 10px;
+}
 
-        button {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--ouro);
-            border: 1px solid var(--ouro);
-            padding: 12px 30px;
-            margin: 5px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            text-transform: uppercase;
-            transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            letter-spacing: 1px;
-        }
+button{
+  background:transparent;
+  color:var(--ouro);
+  border:1px solid var(--ouro);
+  padding:8px 20px;
+  margin:5px;
+  border-radius:30px;
+  cursor:pointer;
+  font-family:'Cinzel',serif;
+  text-transform:uppercase;
+  font-size: 0.8em;
+  transition:all .3s;
+}
 
-        button:hover, button.ativo {
-            background: var(--ouro);
-            color: var(--roxo);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
-        }
+button:hover,button.ativo{
+  background:var(--ouro);
+  color:var(--roxo);
+}
 
-        /* GRID */
-        #grid {
-            display: grid;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px auto;
-            max-width: 400px;
-        }
+/* GRID */
+#grid{
+  display:grid;
+  gap:15px;
+  justify-content:center;
+  margin-top:20px;
+}
 
-        /* CARTAS */
-        .carta {
-            width: 100px;
-            height: 160px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
+/* CARTAS */
+.carta{
+  width:90px;
+  height:145px;
+  perspective:1000px;
+  cursor:pointer;
+}
 
-        .carta-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
+.carta-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style:preserve-3d;
+}
 
-        .carta.revelada .carta-inner {
-            transform: rotateY(180deg);
-        }
+.carta.revelada .carta-inner{
+  transform:rotateY(180deg);
+}
 
-        .face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
-            border: 1px solid var(--ouro);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:10px;
+  border:1.5px solid var(--ouro);
+  box-shadow:0 8px 15px rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-        .frente {
-            background: linear-gradient(135deg, #2b1452, #120824);
-            color: var(--ouro);
-            font-size: 30px;
-        }
+.frente{
+  background: linear-gradient(135deg,#3a1c71,#120824);
+  color:var(--ouro);
+  font-size:24px;
+}
 
-        .frente::after {
-            content: '✦';
-            opacity: 0.5;
-        }
+.verso{
+  transform:rotateY(180deg);
+  background: #000;
+  overflow:hidden;
+}
 
-        .verso {
-            transform: rotateY(180deg);
-            background: #000;
-            overflow: hidden;
-        }
+.verso img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-        .verso img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* MENSAGEM */
+#mensagem{
+  margin:30px auto;
+  max-width:600px;
+  font-size:15px;
+  line-height:1.6;
+  padding:20px;
+  background: rgba(255,255,255,0.05);
+  border-radius:15px;
+}
 
-        /* MENSAGEM E SÍNTESE */
-        #mensagem {
-            margin: 40px auto;
-            max-width: 700px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            line-height: 1.8;
-            font-size: 16px;
-            transition: opacity 0.5s;
-        }
+/* CTA */
+.cta-whatsapp{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#25d366;
+  color:#fff;
+  padding:15px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  z-index: 100;
+}
 
-        .interpretacao-box {
-            text-align: left;
-            border-left: 4px solid var(--ouro);
-            padding-left: 20px;
-        }
-
-        .tag-tipo {
-            font-size: 11px;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 10px;
-        }
-
-        .positivo-tag { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
-        .negativo-tag { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
-        .neutro-tag { background: rgba(241, 196, 15, 0.2); color: #f1c40f; }
-
-        /* CTA FIXO */
-        .cta-whatsapp {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #25d366;
-            color: #fff;
-            padding: 16px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s;
-        }
-
-        .cta-whatsapp:hover {
-            transform: translateX(-50%) scale(1.05);
-            background: #20ba5a;
-        }
-
-        @media(max-width:450px){
-            .carta { width: 90px; height: 145px; }
-            h1 { font-size: 1.6em; }
-            #grid { gap: 10px; }
-            #mensagem { margin: 20px 15px; font-size: 14px; }
-        }
-    </style>
+@media(max-width:450px){
+  .carta{width:85px;height:135px;}
+  h1{font-size:1.4em;}
+}
+</style>
 </head>
 <body>
 
-    <div class="titulo-container">
-        <h1>✦ Baralho Cigano ✦</h1>
-        <div class="linha-ornamental"></div>
-        <p style="font-style: italic; opacity: 0.8; margin-top: 10px;">Por Jéssica Ramos</p>
-    </div>
+<div class="titulo-container">
+  <h1>✦ Baralho Cigano ✦</h1>
+  <div class="linha-ornamental"></div>
+  <p style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Jessica Ramos</p>
+</div>
 
-    <div class="menu">
-        <button onclick="iniciarTiragem(3, this)">Conselho 3 Cartas</button>
-        <button onclick="iniciarTiragem(9, this)">Tiragem Completa (9)</button>
-    </div>
+<div class="menu">
+<button onclick="iniciarTiragem(3,this)">3 Cartas</button>
+<button onclick="iniciarTiragem(9,this)">9 Cartas</button>
+</div>
 
-    <div id="grid"></div>
-    <div id="mensagem">Escolha uma modalidade acima e concentre-se na sua intenção.</div>
+<div id="grid"></div>
+<div id="mensagem">Mentalize sua pergunta e escolha uma tiragem.</div>
 
-    <a href="https://wa.me/5511954102956?text=Olá Jéssica Ramos! Vi sua tiragem online e gostaria de uma consulta detalhada." target="_blank" class="cta-whatsapp">
-        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-        Falar com Jéssica Ramos
-    </a>
+<a href="https://wa.me/5511954102956?text=Olá Jessica Ramos! Gostaria de uma consulta particular." target="_blank" class="cta-whatsapp">
+💬 Falar com Jessica Ramos
+</a>
 
-    <script>
-        const cartas = [
-            {nome:"Cavaleiro", tipo:"positivo", desc:"movimento, notícias rápidas e ação", conselho:"Não hesite. A hora de agir e colocar seus planos em movimento é agora."},
-            {nome:"Trevo", tipo:"positivo", desc:"pequena sorte e superação de tropeços", conselho:"Mantenha o otimismo. Problemas passageiros não devem tirar seu foco."},
-            {nome:"Navio", tipo:"neutro", desc:"mudanças, viagens e novos horizontes", conselho:"Deixe as águas levarem o que não serve mais. Aceite o fluxo da vida."},
-            {nome:"Casa", tipo:"positivo", desc:"equilíbrio, família e segurança", conselho:"Valorize sua base emocional e cuide do seu lar físico e espiritual."},
-            {nome:"Árvore", tipo:"positivo", desc:"crescimento, saúde e raízes fortes", conselho:"Paciência. Tudo que é sólido leva tempo para crescer e florescer."},
-            {nome:"Nuvens", tipo:"negativo", desc:"confusão mental e dúvidas passageiras", conselho:"Não tome decisões importantes enquanto a 'neblina' não dissipar."},
-            {nome:"Cobra", tipo:"negativo", desc:"astúcia, inteligência ou traições", conselho:"Observe mais e fale menos. Use a estratégia a seu favor."},
-            {nome:"Caixão", tipo:"negativo", desc:"finais de ciclos e transformações", conselho:"Desapegue. Um ciclo precisa morrer para que o novo possa nascer."},
-            {nome:"Buquê", tipo:"positivo", desc:"felicidade, beleza e reconhecimento", conselho:"Aceite os presentes da vida com gratidão e brilhe socialmente."},
-            {nome:"Foice", tipo:"negativo", desc:"cortes necessários e transformações bruscas", conselho:"Corte o mal pela raiz. Decisões radicais trazem alívio futuro."},
-            {nome:"Chicote", tipo:"negativo", desc:"conflitos, estresse ou disciplina", conselho:"Cuidado com a agressividade. Direcione sua energia para o foco, não para a briga."},
-            {nome:"Pássaros", tipo:"positivo", desc:"comunicação, parcerias e alegria", conselho:"Dialogue. A solução para suas dúvidas está em uma conversa franca."},
-            {nome:"Criança", tipo:"positivo", desc:"pureza, novos projetos e leveza", conselho:"Resgate sua criança interior e encare os desafios com mais espontaneidade."},
-            {nome:"Raposa", tipo:"negativo", desc:"estratégia e atenção a armadilhas", conselho:"Nem tudo é o que parece. Seja esperto(a) e proteja seus interesses."},
-            {nome:"Urso", tipo:"negativo", desc:"proteção, ciúmes ou força bruta", conselho:"Proteja sua energia. Cuidado com pessoas dominadoras ao seu redor."},
-            {nome:"Estrelas", tipo:"positivo", desc:"esperança, proteção e destino", conselho:"Confie na sua intuição. O universo está iluminando seus passos."},
-            {nome:"Cegonha", tipo:"positivo", desc:"novidades, mudanças e renovação", conselho:"Esteja aberto(a) ao inesperado. Mudanças positivas estão a caminho."},
-            {nome:"Cachorro", tipo:"positivo", desc:"lealdade, amizade e fidelidade", conselho:"Conte com seus amigos leais. Alguém de confiança vai te apoiar."},
-            {nome:"Torre", tipo:"neutro", desc:"introspecção, espiritualidade e isolamento", conselho:"Recolha-se para entender seus sentimentos. A resposta está dentro de você."},
-            {nome:"Jardim", tipo:"positivo", desc:"colheita social e exposição pública", conselho:"É hora de sair e mostrar seus talentos. O mundo quer te ver."},
-            {nome:"Montanha", tipo:"negativo", desc:"bloqueios, justiça ou desafios grandes", conselho:"Não tente vencer no grito. Paciência e perseverança vencem obstáculos."},
-            {nome:"Caminhos", tipo:"neutro", desc:"escolhas, direções e livre-arbítrio", conselho:"Analise as opções. Só você pode escolher qual direção seguir agora."},
-            {nome:"Ratos", tipo:"negativo", desc:"desgastes, perdas e estresse", conselho:"Identifique o que está sugando sua energia e coloque um limite imediato."},
-            {nome:"Coração", tipo:"positivo", desc:"amor, paixão e entrega emocional", conselho:"Aja com o coração, mas não ignore a razão. Viva intensamente."},
-            {nome:"Anel", tipo:"positivo", desc:"alianças, contratos e uniões", conselho:"Honre seus acordos. Este é um momento de parcerias sólidas."},
-            {nome:"Livro", tipo:"neutro", desc:"segredos, conhecimento e estudos", conselho:"Mantenha seus planos em sigilo por enquanto. Estude mais a situação."},
-            {nome:"Carta", tipo:"neutro", desc:"mensagens, documentos e avisos", conselho:"Fique atento(a) a papéis ou notícias que podem chegar em breve."},
-            {nome:"Cigano", tipo:"neutro", desc:"força masculina, lógica e razão", conselho:"Use o intelecto e a objetividade para resolver essa questão."},
-            {nome:"Cigana", tipo:"neutro", desc:"força feminina, intuição e sensibilidade", conselho:"Siga seu 'feeling'. A intuição será sua melhor bússola hoje."},
-            {nome:"Lírios", tipo:"positivo", desc:"paz, virtude e maturidade", conselho:"Aja com calma e integridade. A sabedoria trará a solução."},
-            {nome:"Sol", tipo:"positivo", desc:"sucesso, clareza e vitalidade", conselho:"O momento é de brilhar. A verdade apareceu e a vitória é sua."},
-            {nome:"Lua", tipo:"positivo", desc:"reconhecimento, mistério e sonhos", conselho:"Preste atenção aos seus sonhos e à sua sensibilidade artística."},
-            {nome:"Chave", tipo:"positivo", desc:"soluções, aberturas e respostas", conselho:"A solução está nas suas mãos. Não tenha medo de abrir essa porta."},
-            {nome:"Peixes", tipo:"positivo", desc:"prosperidade e fluxo financeiro", conselho:"Aproveite o fluxo de abundância. O dinheiro tende a circular melhor."},
-            {nome:"Âncora", tipo:"positivo", desc:"estabilidade, fé e segurança", conselho:"Mantenha-se firme em seus propósitos. O pior já passou."},
-            {nome:"Cruz", tipo:"negativo", desc:"provas, destino e fé necessária", conselho:"Aguente firme. Este desafio é um aprendizado necessário para sua evolução."}
-        ];
+<script>
+const cartas = [
+{nome:"Cavaleiro",tipo:"neutro",desc:"chegada de notícias e rapidez nos acontecimentos",conselho:"Aja com determinação e não deixe a oportunidade passar.",img:"cartas/L01-Cavaleiro.jpg"},
+{nome:"Trevo",tipo:"positivo",desc:"pequena sorte e superação de tropeços",conselho:"Mantenha o otimismo, pois o problema atual é passageiro.",img:"cartas/L02-Trevo.jpg"},
+{nome:"Navio",tipo:"neutro",desc:"mudanças graduais e novos horizontes se abrindo",conselho:"Deixe as coisas fluírem e aceite o novo ciclo que chega.",img:"cartas/L03-Navio.jpg"},
+{nome:"Casa",tipo:"positivo",desc:"equilíbrio familiar e segurança interna",conselho:"Busque apoio em suas bases e foque no seu bem-estar.",img:"cartas/L04-Casa.jpg"},
+{nome:"Árvore",tipo:"positivo",desc:"vitalidade e colheita de bons frutos a longo prazo",conselho:"Tenha paciência, pois o crescimento agora é sólido.",img:"cartas/L05-Arvore.jpg"},
+{nome:"Nuvens",tipo:"negativo",desc:"confusão mental e incertezas no caminho",conselho:"Aguarde a poeira baixar antes de tomar qualquer decisão.",img:"cartas/L06-Nuvens.jpg"},
+{nome:"Cobra",tipo:"negativo",desc:"necessidade de cautela e observação de traições",conselho:"Seja estrategista e não revele seus planos a qualquer um.",img:"cartas/L07-Cobra.jpg"},
+{nome:"Caixão",tipo:"negativo",desc:"finalização necessária para um renascimento",conselho:"Desapegue do que não te serve mais para poder evoluir.",img:"cartas/L08-Caixao.jpg"},
+{nome:"Buquê",tipo:"positivo",desc:"momentos de alegria e reconhecimento merecido",conselho:"Celebre suas conquistas e aceite os presentes da vida.",img:"cartas/L09-Buque.jpg"},
+{nome:"Foice",tipo:"negativo",desc:"corte abrupto e decisões que não podem ser adiadas",conselho:"Abandone o que te atrasa, mesmo que o corte seja doloroso.",img:"cartas/L10-Foice.jpg"},
+{nome:"Sol",tipo:"positivo",desc:"sucesso absoluto e clareza total sobre os fatos",conselho:"Aproveite sua energia vital, o momento é de brilhar.",img:"cartas/L31-Sol.jpg"},
+{nome:"Lua",tipo:"positivo",desc:"intuição aflorada e reconhecimento pelos seus méritos",conselho:"Confie nos seus pressentimentos e honre sua sensibilidade.",img:"cartas/L32-Lua.jpg"},
+{nome:"Coração",tipo:"positivo",desc:"sentimentos intensos e entrega emocional verdadeira",conselho:"Siga o que seu coração diz, mas mantenha os pés no chão.",img:"cartas/L24-Coracao.jpg"},
+{nome:"Anel",tipo:"positivo",desc:"uniões sólidas, contratos ou parcerias importantes",conselho:"Valorize seus compromissos e as pessoas leais ao seu lado.",img:"cartas/L25-Anel.jpg"},
+{nome:"Montanha",tipo:"negativo",desc:"obstáculos que exigem perseverança e justiça",conselho:"Não tente atravessar a montanha à força; contorne-a com calma.",img:"cartas/L21-Montanha.jpg"}
+];
 
-        let tiragem = [], limite = 0, reveladas = 0;
+let tiragem=[],limite=0,reveladas=0;
 
-        function embaralhar(lista) {
-            return lista.sort(() => Math.random() - 0.5);
-        }
+function embaralhar(lista){
+let copia=[...lista];
+for(let i=copia.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[copia[i],copia[j]]=[copia[j],copia[i]];
+}
+return copia;
+}
 
-        function iniciarTiragem(qtd, botao) {
-            limite = qtd;
-            reveladas = 0;
-            tiragem = embaralhar([...cartas]).slice(0, limite);
-            
-            document.querySelectorAll("button").forEach(b => b.classList.remove("ativo"));
-            botao.classList.add("ativo");
-            
-            document.getElementById("mensagem").innerHTML = "Mentalize sua pergunta e toque nas cartas para revelá-las.";
-            montarGrid();
-        }
+function iniciarTiragem(qtd,botao){
+limite=qtd;
+reveladas=0;
+tiragem=embaralhar(cartas).slice(0,limite);
+document.querySelectorAll("button").forEach(b=>b.classList.remove("ativo"));
+botao.classList.add("ativo");
+document.getElementById("mensagem").innerHTML="Toque nas cartas para revelar a mensagem do destino.";
+montarGrid();
+}
 
-        function montarGrid() {
-            const grid = document.getElementById("grid");
-            grid.innerHTML = "";
-            grid.style.gridTemplateColumns = (limite === 9) ? "repeat(3, auto)" : "repeat(3, auto)";
-            
-            tiragem.forEach((carta, i) => {
-                const div = document.createElement("div");
-                div.className = "carta";
-                div.innerHTML = `
-                    <div class="carta-inner">
-                        <div class="face frente"></div>
-                        <div class="face verso">
-                            <img src="cartas/${carta.nome.toLowerCase()}.jpg" alt="${carta.nome}" onerror="this.src='https://via.placeholder.com/100x160/120824/d4af37?text=${carta.nome}'">
-                        </div>
-                    </div>`;
-                div.onclick = () => revelar(div, i);
-                grid.appendChild(div);
-            });
-        }
+function montarGrid(){
+const grid=document.getElementById("grid");
+grid.innerHTML="";
+grid.style.gridTemplateColumns="repeat(3, auto)";
+tiragem.forEach((carta,i)=>{
+const div=document.createElement("div");
+div.className="carta";
+div.innerHTML=`
+<div class="carta-inner">
+<div class="face frente">✶</div>
+<div class="face verso">
+<img src="${carta.img}" alt="${carta.nome}" onerror="this.src='https://via.placeholder.com/95x150/120824/d4af37?text=${carta.nome}'">
+</div>
+</div>`;
+div.onclick=()=>revelar(div,i);
+grid.appendChild(div);
+});
+}
 
-        function revelar(div, index) {
-            if (div.classList.contains("revelada")) return;
-            div.classList.add("revelada");
-            reveladas++;
-            if (reveladas === limite) {
-                setTimeout(mostrarSintese, 800);
-            }
-        }
+function revelar(div,index){
+if(div.classList.contains("revelada"))return;
+div.classList.add("revelada");
+reveladas++;
+if(reveladas===limite) setTimeout(mostrarSintese, 600);
+}
 
-        function mostrarSintese() {
-            let texto = `<div class="interpretacao-box">`;
-            texto += `<h3 style="color:var(--ouro); margin-top:0; font-family:'Cinzel';">🔮 Revelação das Energias</h3>`;
+function mostrarSintese(){
+let texto = `<h3 style="color:var(--ouro); margin-top:0;">🔮 Sua Interpretação</h3>`;
 
-            if (limite === 3) {
-                const [c1, c2, c3] = tiragem;
-                texto += `<p><strong>Passado/Origem:</strong> <em>${c1.nome}</em> indica ${c1.desc}.</p>`;
-                texto += `<p><strong>Presente/Conselho:</strong> O <em>${c2.nome}</em> diz: ${c2.conselho}</p>`;
-                texto += `<p><strong>Futuro/Desfecho:</strong> A energia de <em>${c3.nome}</em> aponta para ${c3.desc}.</p>`;
-                
-                // Veredito rápido
-                const pos = tiragem.filter(c => c.tipo === "positivo").length;
-                if(pos >= 2) texto += `<p style="color:var(--sucesso)">✨ <strong>Conclusão:</strong> O caminho está favorável. Siga com confiança!</p>`;
-                else if(pos === 1) texto += `<p style="color:var(--alerta)">⚠️ <strong>Conclusão:</strong> Há desafios, mas o conselho da carta central pode te salvar.</p>`;
-                else texto += `<p style="color:#e74c3c">🌙 <strong>Conclusão:</strong> Momento de cautela total. Aguarde as nuvens passarem.</p>`;
-            }
+if(limite === 3){
+let c1 = tiragem[0]; let c2 = tiragem[1]; let c3 = tiragem[2];
+texto += `<p><strong>O Caminho:</strong> A leitura inicia com <em>${c1.nome}</em>, sugerindo ${c1.desc}. No centro, o <em>${c2.nome}</em> traz o conselho: ${c2.conselho}</p>`;
+texto += `<p><strong>O Desfecho:</strong> Com a carta <em>${c3.nome}</em>, a tendência final é de ${c3.desc}.</p>`;
+}
 
-            if (limite === 9) {
-                const central = tiragem[4];
-                const positivas = tiragem.filter(c => c.tipo === "positivo").length;
+if(limite === 9){
+let central = tiragem[4];
+let positivas = tiragem.filter(c => c.tipo === "positivo").length;
+texto += `<p><strong>Foco Central:</strong> A carta <strong>${central.nome}</strong> domina a tiragem, indicando ${central.desc}.</p>`;
+texto += `<p><strong>Análise:</strong> Identificamos ${positivas} energias de luz neste jogo. `;
+if(positivas >= 5) texto += `Isso indica um caminho aberto e chances altíssimas de sucesso imediato!`;
+else texto += `O momento pede cautela e que você siga à risca o conselho da carta central.`;
+texto += `</p>`;
+}
 
-                texto += `<p><strong>Tema Central:</strong> A carta <strong>${central.nome}</strong> é a chave do seu jogo. Ela indica ${central.desc}.</p>`;
-                texto += `<p><strong>O Caminho para você:</strong> ${central.conselho}</p>`;
-                
-                texto += `<p>Num panorama geral de 9 energias, identificamos ${positivas} influências positivas. `;
-                if(positivas > 5) texto += `Isso mostra um destino de sucesso e resoluções rápidas!</p>`;
-                else if(positivas > 3) texto += `A situação exige equilíbrio. Você tem as ferramentas, mas precisa de foco.</p>`;
-                else texto += `A leitura sugere um momento de limpeza profunda. Não force situações agora.</p>`;
-            }
+texto += `<hr style="border:0; border-top:1px solid rgba(212,175,55,0.2); margin:15px 0;">
+<p>✨ <strong>Quer detalhes sobre sua situação?</strong><br>
+Jessica Ramos - Oraculista<br>
+Clique abaixo para uma consulta completa.</p>`;
 
-            texto += `<hr style="border:0; border-top:1px solid rgba(212,175,55,0.2); margin:20px 0;">
-                      <p style="font-size:13px; font-style:italic;">As cartas revelam tendências, mas você é o dono(a) do seu destino.</p>
-                      <p><strong>Deseja aprofundar estes detalhes?</strong></p>
-                      </div>`;
-
-            const msgDiv = document.getElementById("mensagem");
-            msgDiv.innerHTML = texto;
-            msgDiv.scrollIntoView({behavior: "smooth"});
-        }
-    </script>
+document.getElementById("mensagem").innerHTML = texto;
+document.getElementById("mensagem").scrollIntoView({behavior: "smooth"});
+}
+</script>
 </body>
 </html>
