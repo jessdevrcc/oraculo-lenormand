@@ -3,230 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oráculo Lenormand | Jessica Ramos</title>
+<title>Baralho Cigano | Jessica Ramos</title>
 
 <style>
-  :root {
-    --ouro: #d4af37;
-    --roxo: #1a0b2e;
-    --texto: #e9dcff;
-  }
+:root{
+  --ouro:#d4af37;
+  --roxo:#120824;
+  --roxo2:#1e0f3a;
+  --texto:#f3e9ff;
+}
 
-  body {
-    margin:0;
-    background: radial-gradient(circle at center, #3b1d6e 0%, #1a0b2e 100%);
-    color: var(--texto);
-    font-family: 'Raleway', sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-height:100vh;
-    text-align:center;
-    padding-bottom:150px;
-  }
+body{
+  margin:0;
+  font-family:'Raleway',sans-serif;
+  background:radial-gradient(circle at top,#2b1452 0%,#120824 70%);
+  color:var(--texto);
+  text-align:center;
+  min-height:100vh;
+  padding-bottom:140px;
+}
 
-  h1 {
-    font-family: 'Cinzel', serif;
-    color: var(--ouro);
-    margin:20px 0 10px;
-    font-size:2em;
-    letter-spacing:2px;
-  }
+h1{
+  font-family:'Cinzel',serif;
+  color:var(--ouro);
+  margin:25px 0 10px;
+  font-size:2.2em;
+  letter-spacing:3px;
+  text-shadow:0 0 10px rgba(212,175,55,0.6);
+}
 
-  .menu {
-    margin:15px 0;
-  }
+.menu{
+  margin:15px 0;
+}
 
-  button {
-    background: rgba(255,255,255,0.05);
-    color: var(--ouro);
-    border:1px solid var(--ouro);
-    padding:10px 20px;
-    margin:0 5px;
-    border-radius:25px;
-    cursor:pointer;
-    font-family:'Cinzel', serif;
-    text-transform:uppercase;
-    transition:all 0.3s;
-  }
+button{
+  background:transparent;
+  color:var(--ouro);
+  border:1px solid var(--ouro);
+  padding:10px 25px;
+  margin:0 8px;
+  border-radius:30px;
+  cursor:pointer;
+  font-family:'Cinzel',serif;
+  text-transform:uppercase;
+  transition:all .3s;
+}
 
-  button.ativo, button:hover {
-    background: var(--ouro);
-    color: var(--roxo);
-  }
+button:hover,button.ativo{
+  background:var(--ouro);
+  color:var(--roxo);
+}
 
-  #grid {
-    display:grid;
-    gap:15px;
-    justify-content:center;
-    margin-top:20px;
-  }
+#grid{
+  display:grid;
+  gap:18px;
+  justify-content:center;
+  margin-top:25px;
+}
 
-  .carta {
-    width:90px;
-    height:140px;
-    background:#2b1845;
-    border:1px solid var(--ouro);
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    font-size:26px;
-    transition: transform 0.5s;
-    position:relative;
-  }
+.carta{
+  width:95px;
+  height:150px;
+  perspective:1000px;
+  cursor:pointer;
+}
 
-  .carta img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:10px;
-  }
+.carta-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .8s;
+  transform-style:preserve-3d;
+}
 
-  .carta.revelada {
-    font-size:13px;
-    background:#261443;
-    padding:5px;
-  }
+.carta.revelada .carta-inner{
+  transform:rotateY(180deg);
+}
 
-  #mensagem {
-    margin-top:20px;
-    font-style:italic;
-    max-width:500px;
-  }
+.face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:12px;
+  border:2px solid var(--ouro);
+  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-  .cta-whatsapp {
-    position:fixed;
-    bottom:20px;
-    background:#25d366;
-    color:#fff;
-    padding:15px 30px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.3);
-    font-family:'Raleway',sans-serif;
-  }
+/* Dorso místico */
+.frente{
+  background:
+    radial-gradient(circle at center,var(--ouro) 1%,transparent 2%),
+    radial-gradient(circle at center,rgba(255,255,255,0.1) 0%,transparent 60%),
+    linear-gradient(135deg,#3a1c71,#120824);
+  background-size:10px 10px,100% 100%,100% 100%;
+  color:var(--ouro);
+  font-size:22px;
+  letter-spacing:2px;
+}
 
-  .cta-whatsapp:hover {
-    transform:scale(1.05);
-  }
+.verso{
+  transform:rotateY(180deg);
+  overflow:hidden;
+}
 
-  @media(max-width:450px){
-    .carta{width:70px;height:110px;}
-    #grid{gap:10px;}
-  }
+.verso img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+#mensagem{
+  margin:30px auto;
+  max-width:600px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.cta-whatsapp{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#25d366;
+  color:#fff;
+  padding:15px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+@media(max-width:450px){
+  .carta{width:80px;height:130px;}
+  #grid{gap:12px;}
+}
 </style>
 </head>
 <body>
 
-<h1>✦ Oráculo Lenormand ✦</h1>
+<h1>✦ Baralho Cigano ✦</h1>
 
 <div class="menu">
-  <button onclick="iniciarTiragem(3,this)">3 Cartas</button>
-  <button onclick="iniciarTiragem(9,this)">9 Cartas</button>
+<button onclick="iniciarTiragem(3,this)">3 Cartas</button>
+<button onclick="iniciarTiragem(9,this)">9 Cartas</button>
 </div>
 
 <div id="grid"></div>
-<div id="mensagem">Escolha uma tiragem</div>
+<div id="mensagem">Escolha uma tiragem e mentalize sua pergunta.</div>
 
-<a href="https://wa.me/5511954102956?text=Olá Jessica! Gostaria de uma leitura completa." target="_blank" class="cta-whatsapp">💬 Consultar no WhatsApp</a>
+<a href="https://wa.me/5511954102956?text=Olá Jéssica Ramos! Gostaria de uma consulta particular." target="_blank" class="cta-whatsapp">
+💬 Falar com Jéssica Ramos
+</a>
 
 <script>
 const cartas = [
-  {nome:"Cavaleiro", desc:"Mensagens rápidas, movimento e notícias chegando.", img:"cartas/L01-Cavaleiro.jpg"},
-  {nome:"Trevo", desc:"Pequena sorte, obstáculos superados com otimismo.", img:"cartas/L02-Trevo.jpg"},
-  {nome:"Navio", desc:"Viagens, novos horizontes ou projetos distantes.", img:"cartas/L03-Navio.jpg"},
-  {nome:"Casa", desc:"Segurança, lar, família e estabilidade emocional.", img:"cartas/L04-Casa.jpg"},
-  {nome:"Árvore", desc:"Crescimento vital, saúde e raízes profundas.", img:"cartas/L05-Arvore.jpg"},
-  {nome:"Nuvens", desc:"Dúvidas temporárias, aguarde a poeira baixar.", img:"cartas/L06-Nuvens.jpg"},
-  {nome:"Cobra", desc:"Atenção a pessoas ao redor, use sua sabedoria.", img:"cartas/L07-Cobra.jpg"},
-  {nome:"Caixão", desc:"Transformação profunda e encerramento de ciclos.", img:"cartas/L08-Caixao.jpg"},
-  {nome:"Buquê", desc:"Felicidade, presentes do destino e harmonia.", img:"cartas/L09-Buque.jpg"},
-  {nome:"Foice", desc:"Corte necessário para o seu crescimento.", img:"cartas/L10-Foice.jpg"},
-  {nome:"Chicote", desc:"Poder de ação, cuidado com conflitos inúteis.", img:"cartas/L11-Chicote.jpg"},
-  {nome:"Pássaros", desc:"Comunicação alegre, parcerias e liberdade.", img:"cartas/L12-Passaros.jpg"},
-  {nome:"Criança", desc:"Novos começos, pureza e espontaneidade.", img:"cartas/L13-Crianca.jpg"},
-  {nome:"Raposa", desc:"Seja estrategista. Observe antes de agir.", img:"cartas/L14-Raposa.jpg"},
-  {nome:"Urso", desc:"Força bruta e proteção, evite ciúmes.", img:"cartas/L15-Urso.jpg"},
-  {nome:"Estrela", desc:"Inspiração divina e caminhos iluminados.", img:"cartas/L16-Estrela.jpg"},
-  {nome:"Cegonha", desc:"Mudanças positivas e novidades inesperadas.", img:"cartas/L17-Cegonha.jpg"},
-  {nome:"Cão", desc:"Lealdade e apoio de amigos verdadeiros.", img:"cartas/L18-Cao.jpg"},
-  {nome:"Torre", desc:"Elevação espiritual e autoconhecimento.", img:"cartas/L19-Torre.jpg"},
-  {nome:"Jardim", desc:"Expansão social e colheita do que plantou.", img:"cartas/L20-Jardim.jpg"},
-  {nome:"Montanha", desc:"Desafios que exigem firmeza e perseverança.", img:"cartas/L21-Montanha.jpg"},
-  {nome:"Caminhos", desc:"Decisões à vista. Escolha com o coração.", img:"cartas/L22-Caminhos.jpg"},
-  {nome:"Ratos", desc:"Atenção aos pequenos desgastes de energia.", img:"cartas/L23-Rato.jpg"},
-  {nome:"Coração", desc:"Amor, sentimentos profundos e entrega.", img:"cartas/L24-Coracao.jpg"},
-  {nome:"Anel", desc:"Compromisso, união e parcerias sólidas.", img:"cartas/L25-Anel.jpg"},
-  {nome:"Livro", desc:"Segredos sendo guardados ou estudos importantes.", img:"cartas/L26-Livro.jpg"},
-  {nome:"Carta", desc:"Documentos ou comunicações formais importantes.", img:"cartas/L27-Carta.jpg"},
-  {nome:"Homem", desc:"Figura masculina central ou energia de ação.", img:"cartas/L28-Homem.jpg"},
-  {nome:"Mulher", desc:"Figura feminina central ou energia receptiva.", img:"cartas/L29-Mulher.jpg"},
-  {nome:"Lírios", desc:"Paz, pureza e maturidade emocional.", img:"cartas/L30-Lirios.jpg"},
-  {nome:"Sol", desc:"Sucesso absoluto, energia e clareza mental.", img:"cartas/L31-Sol.jpg"},
-  {nome:"Lua", desc:"Intuição, sonhos e reconhecimento público.", img:"cartas/L32-Lua.jpg"},
-  {nome:"Chave", desc:"A solução está em suas mãos. Portas abrindo.", img:"cartas/L33-Chave.jpg"},
-  {nome:"Peixes", desc:"Prosperidade, fluxo financeiro e abundância.", img:"cartas/L34-Peixes.jpg"},
-  {nome:"Âncora", desc:"Estabilidade alcançada e segurança no trabalho.", img:"cartas/L35-Ancora.jpg"},
-  {nome:"Cruz", desc:"Vitória após a provação. Fé inabalável.", img:"cartas/L36-Cruz.jpg"}
+{nome:"Cavaleiro",tipo:"neutro",tema:"movimento",desc:"Representa movimento, chegada de notícias e início rápido de acontecimentos.",img:"cartas/L01-Cavaleiro.jpg"},
+{nome:"Trevo",tipo:"positivo",tema:"sorte",desc:"Pequena sorte, oportunidades inesperadas e superação leve de obstáculos.",img:"cartas/L02-Trevo.jpg"},
+{nome:"Navio",tipo:"neutro",tema:"mudança",desc:"Expansão, viagens físicas ou emocionais, busca por novos horizontes.",img:"cartas/L03-Navio.jpg"},
+{nome:"Casa",tipo:"positivo",tema:"estrutura",desc:"Segurança, estabilidade familiar e estrutura sólida.",img:"cartas/L04-Casa.jpg"},
+{nome:"Árvore",tipo:"positivo",tema:"crescimento",desc:"Saúde, longevidade e desenvolvimento gradual.",img:"cartas/L05-Arvore.jpg"},
+{nome:"Nuvens",tipo:"negativo",tema:"confusão",desc:"Dúvidas, instabilidade mental e falta de clareza temporária.",img:"cartas/L06-Nuvens.jpg"},
+{nome:"Cobra",tipo:"negativo",tema:"alerta",desc:"Complexidade, inveja ou situações que exigem estratégia.",img:"cartas/L07-Cobra.jpg"},
+{nome:"Caixão",tipo:"negativo",tema:"transformação",desc:"Fim necessário, encerramento de ciclo e transformação profunda.",img:"cartas/L08-Caixao.jpg"},
+{nome:"Buquê",tipo:"positivo",tema:"felicidade",desc:"Alegria, reconhecimento e momentos agradáveis.",img:"cartas/L09-Buque.jpg"},
+{nome:"Foice",tipo:"negativo",tema:"corte",desc:"Corte súbito, decisões rápidas e rompimentos.",img:"cartas/L10-Foice.jpg"},
+{nome:"Sol",tipo:"positivo",tema:"sucesso",desc:"Sucesso, vitalidade, clareza e vitória garantida.",img:"cartas/L31-Sol.jpg"},
+{nome:"Lua",tipo:"positivo",tema:"emoção",desc:"Sensibilidade, reconhecimento emocional e intuição elevada.",img:"cartas/L32-Lua.jpg"},
+{nome:"Coração",tipo:"positivo",tema:"amor",desc:"Amor verdadeiro, sentimentos profundos e entrega emocional.",img:"cartas/L24-Coracao.jpg"},
+{nome:"Anel",tipo:"positivo",tema:"compromisso",desc:"Compromissos, acordos e vínculos duradouros.",img:"cartas/L25-Anel.jpg"},
+{nome:"Montanha",tipo:"negativo",tema:"bloqueio",desc:"Obstáculos difíceis e atrasos significativos.",img:"cartas/L21-Montanha.jpg"}
 ];
 
-let tiragem = [];
-let limite = 0;
-let reveladas = 0;
+let tiragem=[],limite=0,reveladas=0;
 
 function embaralhar(lista){
-  let copia = [...lista];
-  for(let i = copia.length - 1; i > 0; i--){
-    let j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-  return copia;
+let copia=[...lista];
+for(let i=copia.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[copia[i],copia[j]]=[copia[j],copia[i]];
+}
+return copia;
 }
 
-function iniciarTiragem(qtd, botao){
-  limite = qtd;
-  reveladas = 0;
-  tiragem = embaralhar(cartas).slice(0, limite);
-  document.querySelectorAll("button").forEach(b => b.classList.remove("ativo"));
-  botao.classList.add("ativo");
-  document.getElementById("mensagem").innerText = "Toque nas cartas";
-  montarGrid();
+function iniciarTiragem(qtd,botao){
+limite=qtd;
+reveladas=0;
+tiragem=embaralhar(cartas).slice(0,limite);
+document.querySelectorAll("button").forEach(b=>b.classList.remove("ativo"));
+botao.classList.add("ativo");
+document.getElementById("mensagem").innerHTML="Toque nas cartas para revelar sua mensagem.";
+montarGrid();
 }
 
 function montarGrid(){
-  const grid = document.getElementById("grid");
-  grid.innerHTML = "";
-  grid.style.gridTemplateColumns = limite <= 3 ? "repeat(3, 90px)" : "repeat(3, 90px)";
-  tiragem.forEach((carta, i) => {
-    const div = document.createElement("div");
-    div.className = "carta";
-    div.innerText = "✶";
-    div.onclick = () => revelar(div, i);
-    grid.appendChild(div);
-  });
+const grid=document.getElementById("grid");
+grid.innerHTML="";
+grid.style.gridTemplateColumns="repeat(3, auto)";
+tiragem.forEach((carta,i)=>{
+const div=document.createElement("div");
+div.className="carta";
+div.innerHTML=`
+<div class="carta-inner">
+<div class="face frente">✶</div>
+<div class="face verso">
+<img src="${carta.img}" alt="${carta.nome}">
+</div>
+</div>`;
+div.onclick=()=>revelar(div,i);
+grid.appendChild(div);
+});
 }
 
-function revelar(div, index){
-  if(div.classList.contains("revelada")) return;
-  const carta = tiragem[index];
-  div.innerHTML = `<img src="${carta.img}" alt="${carta.nome}">`;
-  div.classList.add("revelada");
-  reveladas++;
-  if(reveladas === limite){
-    mostrarSintese();
-  }
+function revelar(div,index){
+if(div.classList.contains("revelada"))return;
+div.classList.add("revelada");
+reveladas++;
+if(reveladas===limite)mostrarSintese();
 }
 
 function mostrarSintese(){
-  let texto = tiragem.map(c => `• ${c.nome}: ${c.desc}`).join("<br>");
-  texto += "<br><br>Para mais informações, consultas com Jéssica Ramos.";
-  document.getElementById("mensagem").innerHTML = texto;
+let positivas=0,negativas=0;
+tiragem.forEach(c=>{
+if(c.tipo==="positivo")positivas++;
+if(c.tipo==="negativo")negativas++;
+});
+
+let energia="equilibrada";
+if(positivas>negativas)energia="predominantemente favorável";
+if(negativas>positivas)energia="desafiadora";
+
+let texto=`A energia geral da tiragem é ${energia}. `;
+texto+=tiragem.map(c=>`${c.nome} indica ${c.desc.toLowerCase()}`).join(" ");
+texto+=`<br><br>✨ Quer saber mais?<br>
+Jéssica Ramos Taróloga<br>
+Clique no link abaixo para falar diretamente comigo.`;
+
+document.getElementById("mensagem").innerHTML=texto;
 }
 </script>
 
