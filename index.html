@@ -33,9 +33,9 @@ body{
 h1{
   font-family:'Cinzel',serif;
   color:var(--ouro);
-  font-size:1.8em; /* Reduzido */
+  font-size:1.8em;
   letter-spacing:3px;
-  text-shadow:0 0 10px rgba(212,175,55,0.5);
+  text-shadow:0 0-10px rgba(212,175,55,0.5);
   margin:0;
 }
 
@@ -138,6 +138,7 @@ button:hover,button.ativo{
   padding:20px;
   background: rgba(255,255,255,0.05);
   border-radius:15px;
+  text-align: left; /* Melhor para leitura de síntese */
 }
 
 /* CTA */
@@ -154,6 +155,7 @@ button:hover,button.ativo{
   font-weight:bold;
   box-shadow:0 10px 25px rgba(0,0,0,0.4);
   z-index: 100;
+  text-align: center;
 }
 
 @media(max-width:450px){
@@ -176,7 +178,7 @@ button:hover,button.ativo{
 </div>
 
 <div id="grid"></div>
-<div id="mensagem">Mentalize sua pergunta e escolha uma tiragem.</div>
+<div id="mensagem" style="text-align: center;">Mentalize sua pergunta e escolha uma tiragem.</div>
 
 <a href="https://wa.me/5511954102956?text=Olá Jessica Ramos! Gostaria de uma consulta particular." target="_blank" class="cta-whatsapp">
 💬 Falar com Jessica Ramos
@@ -218,7 +220,7 @@ reveladas=0;
 tiragem=embaralhar(cartas).slice(0,limite);
 document.querySelectorAll("button").forEach(b=>b.classList.remove("ativo"));
 botao.classList.add("ativo");
-document.getElementById("mensagem").innerHTML="Toque nas cartas para revelar a mensagem do destino.";
+document.getElementById("mensagem").innerHTML="<center>Toque nas cartas para revelar a mensagem do destino.</center>";
 montarGrid();
 }
 
@@ -249,7 +251,7 @@ if(reveladas===limite) setTimeout(mostrarSintese, 600);
 }
 
 function mostrarSintese(){
-let texto = `<h3 style="color:var(--ouro); margin-top:0;">🔮 Sua Interpretação</h3>`;
+let texto = `<h3 style="color:var(--ouro); margin-top:0; text-align:center; font-family:'Cinzel';">🔮 Sua Interpretação</h3>`;
 
 if(limite === 3){
 let c1 = tiragem[0]; let c2 = tiragem[1]; let c3 = tiragem[2];
@@ -258,19 +260,33 @@ texto += `<p><strong>O Desfecho:</strong> Com a carta <em>${c3.nome}</em>, a ten
 }
 
 if(limite === 9){
+let pass = [tiragem[0], tiragem[1], tiragem[2]];
+let pres = [tiragem[3], tiragem[4], tiragem[5]];
+let futu = [tiragem[6], tiragem[7], tiragem[8]];
 let central = tiragem[4];
-let positivas = tiragem.filter(c => c.tipo === "positivo").length;
-texto += `<p><strong>Foco Central:</strong> A carta <strong>${central.nome}</strong> domina a tiragem, indicando ${central.desc}.</p>`;
-texto += `<p><strong>Análise:</strong> Identificamos ${positivas} energias de luz neste jogo. `;
-if(positivas >= 5) texto += `Isso indica um caminho aberto e chances altíssimas de sucesso imediato!`;
-else texto += `O momento pede cautela e que você siga à risca o conselho da carta central.`;
-texto += `</p>`;
+let pos = tiragem.filter(c => c.tipo === "positivo").length;
+
+texto += `<p><strong>📜 O que ficou para trás:</strong> As energias de <em>${pass[0].nome}</em> e <em>${pass[1].nome}</em> indicam que você vem de um período marcado por ${pass[0].desc}.</p>`;
+texto += `<p><strong>✨ O Momento Atual:</strong> O centro do jogo é dominado por <strong>${central.nome}</strong>. O foco principal agora deve ser ${central.desc}. O conselho de Jessica é: ${central.conselho}</p>`;
+texto += `<p><strong>🚀 Tendência de Futuro:</strong> A combinação das cartas finais, especialmente <em>${futu[2].nome}</em>, aponta para um desfecho de ${futu[2].desc}.</p>`;
+
+texto += `<div style="background:rgba(212,175,55,0.1); padding:15px; border-radius:10px; border:1px dashed var(--ouro); margin-top:15px;">`;
+texto += `<strong>💎 Veredito da Jessica:</strong> `;
+if(pos >= 6) {
+    texto += `O cenário é extremamente luminoso! Os caminhos estão abertos e a sorte está do seu lado. Vá em frente com fé!`;
+} else if (pos >= 4) {
+    texto += `Existe um equilíbrio. O resultado depende da sua postura. Use a energia do <em>${central.nome}</em> como bússola para vencer os desafios.`;
+} else {
+    texto += `O momento exige cautela. O baralho sugere que você pare, respire e proteja sua energia antes de agir.`;
+}
+texto += `</div>`;
 }
 
-texto += `<hr style="border:0; border-top:1px solid rgba(212,175,55,0.2); margin:15px 0;">
+texto += `<hr style="border:0; border-top:1px solid rgba(212,175,55,0.2); margin:20px 0;">
+<div style="text-align: center;">
 <p>✨ <strong>Quer detalhes sobre sua situação?</strong><br>
-Jessica Ramos - Oraculista<br>
-Clique abaixo para uma consulta completa.</p>`;
+Jessica Ramos - Oraculista</p>
+</div>`;
 
 document.getElementById("mensagem").innerHTML = texto;
 document.getElementById("mensagem").scrollIntoView({behavior: "smooth"});
