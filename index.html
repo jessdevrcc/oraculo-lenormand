@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mística Lenormand | Jéssica Ramos</title>
+    <title>Mística Lenormand | Jessica Ramos</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
@@ -127,6 +127,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* CORREÇÃO DO ESPELHAMENTO AQUI */
+            transform: rotateY(180deg); 
         }
 
         /* Área de Leitura */
@@ -201,7 +203,7 @@
 
     <header>
         <h1>✦ Mística Lenormand ✦</h1>
-        <p class="subtitle">Oráculo por Jéssica Ramos</p>
+        <p class="subtitle">Oráculo por Jessica Ramos</p>
     </header>
 
     <div class="menu">
@@ -217,10 +219,10 @@
     </div>
 
     <div class="footer-info">
-        Consultas Particulares com Jéssica Ramos
+        Consultas Particulares com Jessica Ramos
     </div>
 
-    <a href="https://wa.me/5511954102956?text=Olá Jéssica! Fiz uma tiragem no seu site e senti que preciso de uma leitura completa." target="_blank" class="cta-fixo">
+    <a href="https://wa.me/5511954102956?text=Olá Jessica! Fiz uma tiragem no seu site e senti que preciso de uma leitura completa." target="_blank" class="cta-fixo">
         <span style="font-size:20px">💬</span> AGENDAR CONSULTA COMPLETA
     </a>
 
@@ -233,14 +235,14 @@
         "Arvore": { msg: "Crescimento vital, saúde e raízes profundas.", img: "L05-Arvore.jpg" },
         "Nuvens": { msg: "Dúvidas temporárias. Aguarde a poeira baixar.", img: "L06-Nuvens.jpg" },
         "Cobra": { msg: "Atenção a pessoas ao redor. Use sua sabedoria.", img: "L07-Cobra.jpg" },
-        "Caixão": { msg: "Transformação profunda e encerramento de ciclos.", img: "L08-Caixao.jpg" },
+        "Caixao": { msg: "Transformação profunda e encerramento de ciclos.", img: "L08-Caixao.jpg" },
         "Buque": { msg: "Felicidade, presentes do destino e harmonia.", img: "L09-Buque.jpg" },
         "Foice": { msg: "Corte necessário para o seu crescimento.", img: "L10-Foice.jpg" },
         "Chicote": { msg: "Poder de ação, mas cuidado com conflitos inúteis.", img: "L11-Chicote.jpg" },
         "Passaros": { msg: "Comunicação alegre, parcerias e liberdade.", img: "L12-Passaros.jpg" },
         "Crianca": { msg: "Novos começos, pureza e espontaneidade.", img: "L13-Crianca.jpg" },
         "Raposa": { msg: "Seja estrategista. Observe antes de agir.", img: "L14-Raposa.jpg" },
-        "Urso": { msg: "Força bruta e proteção, mas evite o ciúme.", img: "15-Urso.jpg" },
+        "Urso": { msg: "Força bruta e proteção, mas evite o ciúme.", img: "L15-Urso.jpg" },
         "Estrela": { msg: "Inspiração divina e caminhos iluminados.", img: "L16-Estrela.jpg" },
         "Cegonha": { msg: "Mudanças positivas e novidades inesperadas.", img: "L17-Cegonha.jpg" },
         "Cao": { msg: "Lealdade e apoio de amigos verdadeiros.", img: "L18-Cao.jpg" },
@@ -306,22 +308,3 @@
                 </div>
             `;
             container.onclick = () => revelar(container, nome);
-            grid.appendChild(container);
-        });
-    }
-
-    function revelar(el, nome) {
-        if(el.classList.contains('revelada')) return;
-        el.classList.add('revelada');
-        
-        const box = document.getElementById('leitura-box');
-        box.style.display = 'block';
-        
-        const item = document.createElement('div');
-        item.className = 'msg-item';
-        item.innerHTML = `<strong>${nome}:</strong> ${dadosCartas[nome].msg}`;
-        document.getElementById('texto-leitura').appendChild(item);
-    }
-</script>
-</body>
-</html>
