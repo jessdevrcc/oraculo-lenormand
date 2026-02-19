@@ -23,7 +23,7 @@ body{
   padding-bottom:160px;
 }
 
-/* ===== TÍTULO ===== */
+/* TÍTULO */
 
 .titulo-container{
   margin-top:35px;
@@ -33,9 +33,9 @@ body{
 h1{
   font-family:'Cinzel',serif;
   color:var(--ouro);
-  font-size:2.4em;
+  font-size:2.3em;
   letter-spacing:4px;
-  text-shadow:0 0 12px rgba(212,175,55,0.7);
+  text-shadow:0 0 14px rgba(212,175,55,0.7);
   margin:0;
 }
 
@@ -46,7 +46,7 @@ h1{
   background:linear-gradient(to right, transparent, var(--ouro), transparent);
 }
 
-/* ===== MENU ===== */
+/* MENU */
 
 .menu{
   margin:25px 0 10px;
@@ -70,7 +70,7 @@ button:hover,button.ativo{
   color:var(--roxo);
 }
 
-/* ===== CARTAS ===== */
+/* GRID */
 
 #grid{
   display:grid;
@@ -78,6 +78,8 @@ button:hover,button.ativo{
   justify-content:center;
   margin-top:30px;
 }
+
+/* CARTAS */
 
 .carta{
   width:95px;
@@ -111,7 +113,6 @@ button:hover,button.ativo{
   justify-content:center;
 }
 
-/* Dorso Místico */
 .frente{
   background:
     radial-gradient(circle at center,var(--ouro) 1%,transparent 2%),
@@ -135,7 +136,7 @@ button:hover,button.ativo{
   border-radius:10px;
 }
 
-/* ===== MENSAGEM ===== */
+/* MENSAGEM */
 
 #mensagem{
   margin:35px auto;
@@ -145,7 +146,7 @@ button:hover,button.ativo{
   padding:0 20px;
 }
 
-/* ===== CTA ===== */
+/* CTA */
 
 .cta-whatsapp{
   position:fixed;
@@ -188,22 +189,23 @@ button:hover,button.ativo{
 </a>
 
 <script>
+
 const cartas = [
-{nome:"Cavaleiro",tipo:"neutro",desc:"movimento, chegada de notícias e início rápido de acontecimentos.",img:"cartas/L01-Cavaleiro.jpg"},
-{nome:"Trevo",tipo:"positivo",desc:"pequena sorte, oportunidades inesperadas e superação leve de obstáculos.",img:"cartas/L02-Trevo.jpg"},
-{nome:"Navio",tipo:"neutro",desc:"expansão e busca por novos horizontes.",img:"cartas/L03-Navio.jpg"},
-{nome:"Casa",tipo:"positivo",desc:"segurança e estabilidade emocional ou familiar.",img:"cartas/L04-Casa.jpg"},
-{nome:"Árvore",tipo:"positivo",desc:"crescimento gradual e fortalecimento.",img:"cartas/L05-Arvore.jpg"},
-{nome:"Nuvens",tipo:"negativo",desc:"confusão e instabilidade temporária.",img:"cartas/L06-Nuvens.jpg"},
-{nome:"Cobra",tipo:"negativo",desc:"situação complexa que exige estratégia.",img:"cartas/L07-Cobra.jpg"},
-{nome:"Caixão",tipo:"negativo",desc:"fim de ciclo e transformação profunda.",img:"cartas/L08-Caixao.jpg"},
-{nome:"Buquê",tipo:"positivo",desc:"alegria e reconhecimento.",img:"cartas/L09-Buque.jpg"},
-{nome:"Foice",tipo:"negativo",desc:"corte necessário e decisão abrupta.",img:"cartas/L10-Foice.jpg"},
-{nome:"Sol",tipo:"positivo",desc:"sucesso e clareza absoluta.",img:"cartas/L31-Sol.jpg"},
-{nome:"Lua",tipo:"positivo",desc:"sensibilidade e reconhecimento emocional.",img:"cartas/L32-Lua.jpg"},
-{nome:"Coração",tipo:"positivo",desc:"amor e sentimentos verdadeiros.",img:"cartas/L24-Coracao.jpg"},
-{nome:"Anel",tipo:"positivo",desc:"compromissos e vínculos importantes.",img:"cartas/L25-Anel.jpg"},
-{nome:"Montanha",tipo:"negativo",desc:"bloqueios e desafios a serem superados.",img:"cartas/L21-Montanha.jpg"}
+{nome:"Cavaleiro",tipo:"neutro",desc:"movimento e chegada de notícias",img:"cartas/L01-Cavaleiro.jpg"},
+{nome:"Trevo",tipo:"positivo",desc:"pequena sorte e oportunidades inesperadas",img:"cartas/L02-Trevo.jpg"},
+{nome:"Navio",tipo:"neutro",desc:"mudanças e novos horizontes",img:"cartas/L03-Navio.jpg"},
+{nome:"Casa",tipo:"positivo",desc:"estabilidade e segurança",img:"cartas/L04-Casa.jpg"},
+{nome:"Árvore",tipo:"positivo",desc:"crescimento e fortalecimento gradual",img:"cartas/L05-Arvore.jpg"},
+{nome:"Nuvens",tipo:"negativo",desc:"confusão e instabilidade temporária",img:"cartas/L06-Nuvens.jpg"},
+{nome:"Cobra",tipo:"negativo",desc:"situação complexa que exige estratégia",img:"cartas/L07-Cobra.jpg"},
+{nome:"Caixão",tipo:"negativo",desc:"fim de ciclo e transformação profunda",img:"cartas/L08-Caixao.jpg"},
+{nome:"Buquê",tipo:"positivo",desc:"alegria e reconhecimento",img:"cartas/L09-Buque.jpg"},
+{nome:"Foice",tipo:"negativo",desc:"corte necessário e decisão abrupta",img:"cartas/L10-Foice.jpg"},
+{nome:"Sol",tipo:"positivo",desc:"sucesso e clareza absoluta",img:"cartas/L31-Sol.jpg"},
+{nome:"Lua",tipo:"positivo",desc:"sensibilidade e reconhecimento emocional",img:"cartas/L32-Lua.jpg"},
+{nome:"Coração",tipo:"positivo",desc:"amor e sentimentos verdadeiros",img:"cartas/L24-Coracao.jpg"},
+{nome:"Anel",tipo:"positivo",desc:"compromissos e vínculos importantes",img:"cartas/L25-Anel.jpg"},
+{nome:"Montanha",tipo:"negativo",desc:"bloqueios e desafios a serem superados",img:"cartas/L21-Montanha.jpg"}
 ];
 
 let tiragem=[],limite=0,reveladas=0;
@@ -263,12 +265,19 @@ let inicio = tiragem[0];
 let meio = tiragem[1];
 let fim = tiragem[2];
 
-texto += `A situação inicia com <strong>${inicio.nome}</strong>, indicando ${inicio.desc} `;
-texto += `Em seguida, <strong>${meio.nome}</strong> mostra que há ${meio.desc} `;
-texto += `O desfecho com <strong>${fim.nome}</strong> aponta para ${fim.desc} <br><br>`;
+texto += `A situação começa com <strong>${inicio.nome}</strong>, indicando ${inicio.desc}. `;
+texto += `Em seguida, <strong>${meio.nome}</strong> revela ${meio.desc}. `;
+texto += `O desfecho com <strong>${fim.nome}</strong> aponta para ${fim.desc}. <br><br>`;
 
-texto += `A leitura sugere um movimento claro de transformação entre o início e o resultado. `;
-texto += `O momento pede consciência nas decisões e observação dos sinais ao redor.`;
+if(inicio.tipo==="negativo" && fim.tipo==="positivo"){
+texto += `Há clara superação dos obstáculos iniciais, mostrando evolução positiva. `;
+}
+else if(inicio.tipo==="positivo" && fim.tipo==="negativo"){
+texto += `Existe um alerta para mudanças inesperadas que podem alterar o rumo da situação. `;
+}
+else{
+texto += `O fluxo mostra continuidade energética entre início e resultado. `;
+}
 
 }
 
@@ -278,12 +287,21 @@ let passado = tiragem[0];
 let centro = tiragem[4];
 let futuro = tiragem[8];
 
-texto += `O passado é marcado por <strong>${passado.nome}</strong>, representando ${passado.desc} `;
-texto += `No centro da tiragem está <strong>${centro.nome}</strong>, que revela o tema principal: ${centro.desc} `;
-texto += `A tendência futura aparece em <strong>${futuro.nome}</strong>, indicando ${futuro.desc} <br><br>`;
+texto += `O passado traz a influência de <strong>${passado.nome}</strong>, simbolizando ${passado.desc}. `;
+texto += `No centro da tiragem está <strong>${centro.nome}</strong>, que representa o tema principal: ${centro.desc}. `;
+texto += `A tendência futura aparece em <strong>${futuro.nome}</strong>, indicando ${futuro.desc}. <br><br>`;
 
-texto += `O conjunto das cartas mostra que o momento atual gira em torno dessa energia central. `;
-texto += `As experiências passadas influenciam diretamente o desfecho, e suas atitudes agora serão decisivas.`;
+if(passado.tipo==="negativo" && futuro.tipo==="positivo"){
+texto += `A leitura mostra superação gradual e crescimento após desafios. `;
+}
+else if(passado.tipo==="positivo" && futuro.tipo==="negativo"){
+texto += `Há necessidade de atenção para evitar bloqueios ou perdas futuras. `;
+}
+else{
+texto += `Existe continuidade energética entre passado e futuro. `;
+}
+
+texto += `A carta central reforça que essa é a energia dominante do momento. `;
 
 }
 
@@ -293,3 +311,7 @@ Clique no link abaixo para falar diretamente comigo.`;
 
 document.getElementById("mensagem").innerHTML = texto;
 }
+
+</script>
+</body>
+  </html>
